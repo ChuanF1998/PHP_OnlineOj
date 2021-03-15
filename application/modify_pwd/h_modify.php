@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="Content-Type" content="text/html" />-->
+    <title>密码修改</title>
+    <link rel="stylesheet" type="text/css" href="../css/LoginAndRegister.css">
+
+</head>
+<body>
+<div class="page">
+    <div class="img_background">
+        <img src="../img/register01.jpg" class="img_style"/>
+        <div class="window">
+            <h3 height="30px">密码修改</h3>
+            <form action="register_check.php" method="post" class="form_style">
+                <div class="box1_space">
+                    <input placeholder="请输入电话" name="tel" class="input1_style"/>
+                </div>
+                <div class="box1_space">
+                    <input placeholder="请输入用户名" name="username" class="input1_style"/>
+                </div>
+                <div class="box1_space">
+                    <input type="password" id="pwd1" placeholder="请设置6-15位至少两种字符组合的密码" name="password" class="input1_style"/>
+                </div>
+                <div class="box1_space">
+                    <input type="password" id="pwd2" placeholder="确认密码" name="confirm_pwd" class="input1_style"/>
+                    <div class="pwd_com" id="prompt" style="width: 400px">
+                        两次密码输入不一致
+                    </div>
+                </div>
+
+                <div class="box2_space">
+                    <input type="submit" value="立即修改" name="submit" class="input2_style" onclick="return Registered()"/>
+                    <div>
+                        <a href="../login/h_login.php" class="a_style">返回登录</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    let passwd1 = document.getElementById('pwd1');
+    let passwd2 = document.getElementById('pwd2');
+    if('oninput' in passwd1){
+        passwd1.addEventListener("input",getWord,false);
+    }else{
+        passwd1.onpropertychange = getWord;
+    }
+
+    if('oninput' in passwd2){
+        passwd2.addEventListener("input",getWord,false);
+    }else{
+        passwd2.onpropertychange = getWord;
+    }
+    function getWord(){
+        if (passwd2.value != passwd1.value) {
+            // if (passwd1.value.length < 6) {
+            //     document.getElementById("prompt").innerText = "密码至少为6位，至多为12位";
+            //     document.getElementById("prompt").style.visibility="visible";
+            // }
+            // else {
+            //document.getElementById("prompt").innerText = "两次输入密码不一致";
+            document.getElementById("prompt").style.visibility="visible";
+            //}
+
+        }
+        if (passwd2.value == passwd1.value) {
+            // if (passwd1.value.length < 6) {
+            //     document.getElementById("prompt").style.visibility="visible";
+            // }
+            // else {
+            //document.getElementById("prompt").Value = "两次输入密码不一致";
+            document.getElementById("prompt").style.visibility = "hidden";
+            //}
+
+        }
+    }
+</script>
+
+<script>
+    function Registered() {
+        let Pwd_tmp = document.getElementById('pwd1').value;
+        let CPwd_tmp = document.getElementById('pwd2').value;
+        //判断密码是否符合规则
+        let reg = /(?!^(\d+|[a-zA-Z]+|[~!@#$%^&*?]+)$)^[\w~!@#$%^&*?]{6,15}$/;
+
+        if (!reg.test(Pwd_tmp) || Pwd_tmp.length < 6 || Pwd_tmp.length > 15) {
+            alert("密码须6-15位且至少两种字符组合!");
+            return false;
+        }
+        else {
+            return true;
+        }
+        //判断两次密码是否输入一致
+        if (Pwd_tmp != CPwd_tmp) {
+            alert("两次密码输入不一致!");
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>

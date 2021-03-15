@@ -1,0 +1,88 @@
+/*登录网页*/
+.page {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+}
+
+/*登录图片居中显示*/
+.img_style {
+    display:block;
+    position:relative;
+    margin:auto;
+    height: 900px;
+    width: 1400px;
+
+}
+
+/*图片背景，为了登录框居中而存在*/
+.img_background {
+    display:block;
+    position:relative;
+    margin:auto;
+    height: 900px;
+    width: 1400px;
+}
+
+/*登录及注册框*/
+.window {
+    background-color: rgba(192, 192, 192, 0.5);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 350px;
+    top: 425px;
+    left: 700px;
+    text-align: center;
+    color: black;
+    border-radius: 20px;
+}
+
+/*表单样式*/
+.form_style {
+    height: 280px;
+}
+
+.box1_space {
+    height: 20%;
+    overflow: auto;
+    width: 400px;
+}
+
+.box2_space {
+    height: 25%;
+    width: 400px;
+}
+
+.input1_style {
+    height: 40%;
+    width: 70%;
+    border-radius: 10px;
+    border: 1px solid blanchedalmond;
+}
+
+.input2_style {
+    height: 40%;
+    width: 70%;
+    margin-top: 5px;
+    border-radius: 15px;
+    background-color: #20B2AA;
+    border: 1px solid #20B2AA;
+    color: white;
+}
+
+.pwd_com {
+    height: 10%;
+    top: 0;
+    width: 300px;
+    color: red;
+    font-size: 5px;
+    visibility: hidden;
+}
+
+.a_style {
+    font-size: 5px;
+    color: #87CEFA;
+}

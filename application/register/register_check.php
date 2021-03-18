@@ -8,8 +8,7 @@ $Db_con = $MyDatabase->GetSqlConnect();
 $Username = $_POST["username"];
 $Password = $_POST["password"];
 $ConfirmPwd = $_POST["confirm_pwd"];
-//$Tel = $_POST["tel"];
-$Tel = '4';
+$Tel = $_POST["tel"];
 
 $Feedback = array
 (
@@ -49,11 +48,16 @@ if ($obj != null) {
     $s = EchoHtml($Feedback,'message1');
     exit($s);
 }
-//创建加密类
+//创建加密类，对密码进行加密
 $MyEncryption = new encryption($Password);
 $EncryPwd = $MyEncryption->GetCipher();
 $SqlSentence = "insert into student(tel, username, password) values('$Tel', '$Username', '$EncryPwd')";
 if (mysqli_query($Db_con, $SqlSentence)) {
+    //写入日志
+    $time = (new date())->GetSerDate();
+    $data = "Tel[$Tel]  $time register";
+    (new file_write("../src/register.txt"))->Write($data);
+    //返回信息
     $s = EchoHtml($Feedback,'message2');
     exit($s);
 }

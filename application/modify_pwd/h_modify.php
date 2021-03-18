@@ -15,7 +15,7 @@
         <img src="../img/register01.jpg" class="img_style"/>
         <div class="window">
             <h3 height="30px">密码修改</h3>
-            <form action="register_check.php" method="post" class="form_style">
+            <form action="modify_check.php" method="post" class="form_style">
                 <div class="box1_space">
                     <input placeholder="请输入电话" name="tel" class="input1_style"/>
                 </div>

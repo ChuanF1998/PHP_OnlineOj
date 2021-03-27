@@ -21,7 +21,7 @@ $Feedback = array
     "message2"=>array
     (
         "恭喜你， 修改成功! ",
-        "<a href=\"../login/h_login.php\">点击登录</a>"
+        "<a href=\"../login/h_login.html\">点击登录</a>"
     ),
     "message3"=>array
     (
@@ -39,7 +39,7 @@ if ($Password !== $ConfirmPwd) {
 //向数据库中添加数据
 //先查询数据库中电话是否已经注册过
 $SqlSentence = "select id from student where tel='$Tel'";
-$obj = mysqli_fetch_array(mysqli_query($Db_con, $SqlSentence), MYSQLI_ASSOC);
+$obj = $MyDatabase->SingleSelect($SqlSentence, 0);
 if ($obj == null) {
     $s = EchoHtml($Feedback,'message1');
     exit($s);
@@ -50,7 +50,10 @@ $MyEncryption = new encryption($Password);
 $EncryPwd = $MyEncryption->GetCipher();
 $stu_id = $obj['id'];
 $SqlSentence = "update student set password='$EncryPwd' where student.id='$stu_id'";
-if (mysqli_query($Db_con, $SqlSentence)) {
+if ($MyDatabase->Updata($SqlSentence)) {
+    $time = (new date())->GetSerDate();
+    $data = "Tel[$Tel]  Date[$time] modify password";
+    (new log())->ModifyPwd($data);
     $s = EchoHtml($Feedback,'message2');
     exit($s);
 }

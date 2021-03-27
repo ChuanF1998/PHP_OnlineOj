@@ -7,7 +7,7 @@ class connect
     public function __construct($Table = '') {
         $this->SqlConnect = mysqli_connect("localhost", "root", "", "$Table");
         if (!$this->SqlConnect) {
-            die("数据库连接失败".mysqli_error());
+            die("数据库连接失败".mysqli_error($this->SqlConnect));
         }
         mysqli_query($this->SqlConnect,"set names utf8");
     }
@@ -23,15 +23,35 @@ class connect
         }
         return mysqli_query($this->SqlConnect, $SqlSentence);
     }
-    //数据库查询
-    /*
-     * way 1 =>
-     */
-    public function Select($SqlSentence = "", $way = 0) {
-        if ($SqlSentence == "") {
-            return true;
-        }
 
+    /*数据库查询，返回一个结果集
+     * way 0 => MYSQLI_ASSOC
+           1 => MYSQLI_NUM
+           2 => MYSQLI_BOTH
+     */
+    public function SingleSelect($SqlSentence = "", $way = 0) {
+        if ($SqlSentence == "") {
+            return null;
+        }
+        if ($way == 0) {
+            return mysqli_fetch_array(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_ASSOC);
+        }
+        else if ($way == 1) {
+            return mysqli_fetch_array(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_NUM);
+        }
+        else if ($way == 2) {
+            return mysqli_fetch_array(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_BOTH);
+        }
+        else {
+            return null;
+        }
+    }
+
+    public function Updata($SqlSentence = '') {
+        if ($SqlSentence == '') {
+            return false;
+        }
+        return mysqli_query($this->SqlConnect, $SqlSentence);
     }
 
     public function __destruct() {

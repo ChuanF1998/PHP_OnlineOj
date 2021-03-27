@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+<body>
+<div class="page" style="width: 1510px;">
+    <!--导航栏-->
+    <div class="navigation">
+        <div class="div1">
+            欢迎使用在线代码测验平台
+        </div>
+        <div class="div1">
+            <input  placeholder="请输入搜索内容" name="keywords" class="input_style"/>
+            <button class="search_button" type="button">搜索</button>
+        </div>
+        <div class="div1">
+            <button class="login_button" type="button">登录/注册</button>
+        </div>
+    </div>
+
+    <div style="display: block;">
+        <!--左边题目分类-->
+        <div class="question_classes" id="classes">
+            题目分类
+        </div>
+
+        <!--中间区域-->
+        <div class="center_area">
+
+            <div class="question">
+                <!--选择 or 编程-->
+                <div class="button_box">
+                    <a id="a1" class="my_button" type="button" onclick="choice_que()">选择题</a>
+                    <a id="a2" class="my_button" type="button" onclick="programing_que()">编程题</a>
+                </div>
+                <!--题目展示-->
+                <div class="question_show">
+                    <div class="title">
+                        <div class="div2" style="margin-left: 30px;">题号</div>
+                        <div class="div2" style="margin-left: 130px;">题目名称</div>
+                        <div class="div2" style="margin-left: 500px;">难度</div>
+                        <div class="div2" style="margin-left: 700px;">通过率</div>
+
+                    </div>
+                </div>
+            </div>
+           <!--用户做题详情区域-->
+            <div class="user_situation">
+                asdaafs
+            </div>
+            <!--热点区域-->
+            <div class="question_hot">
+                hikhii
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    window.onload = function() {
+        let s_width = document.documentElement.clientWidth;
+        if (s_width < 1519) {
+            document.getElementById("classes").style.position = "absolute";
+        }
+    }
+    window.onresize = function() {
+        let s_width = document.documentElement.clientWidth;
+        //let s_height = document.documentElement.clientHeight;
+        console.log(s_width);
+        if (s_width < 1519) {
+            document.getElementById("classes").style.position = "absolute";
+        }
+        else {
+            document.getElementById("classes").style.position = "fixed";
+        }
+    }
+</script>
+<script>
+    function choice_que() {
+        document.getElementById("a1").style.color = "#48D1CC";
+        document.getElementById("a2").style.color = "#808080";
+        console.log("选择题");
+    }
+</script>
+<script>
+    function programing_que() {
+        document.getElementById("a1").style.color = "#808080";
+        document.getElementById("a2").style.color = "#48D1CC";
+        console.log("编程题");
+    }
+</script>
+</body>
+</html>
+

@@ -5,6 +5,12 @@
     <title>主页</title>
     <link rel="stylesheet" type="text/css" href="../css/home.css">
     <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <style>
+        ul{
+            list-style-type:none;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
 <div class="page" style="width: 1510px;">
@@ -25,7 +31,13 @@
     <div style="display: block;">
         <!--左边题目分类-->
         <div class="question_classes" id="classes">
-            题目分类
+            <ul>
+            <li class="li_1"><a id="l0" class="li_a" type="button" onclick="c_all()">全部分类</a></li>
+            <li class="li_1"><a id="l1" class="li_a" type="button" onclick="c_algorithm()">算法</a></li>
+            <li class="li_1"><a id="l2" class="li_a" type="button" onclick="c_data_structure()">数据结构</a></li>
+            <li class="li_1"><a id="l3" class="li_a" type="button" onclick="c_network()">网络</a></li>
+            <li class="li_1"><a id="l4" class="li_a" type="button" onclick="c_other()">其他</a></li>
+            </ul>
         </div>
 
         <!--中间区域-->
@@ -92,6 +104,43 @@
         document.getElementById("a1").style.color = "#808080";
         document.getElementById("a2").style.color = "#48D1CC";
         console.log("编程题");
+    }
+</script>
+<script>
+    var li_all = new Array(5);
+    for (var i = 0; i < 5; ++i) {
+        var str = "l" + i;
+        li_all[i] = document.getElementById(str);
+    }
+    function con(k) {
+        for (i = 0; i < 5; ++i) {
+            if (i == k) {
+                li_all[i].style.color = "#48D1CC";
+            }
+            else {
+                li_all[i].style.color = "#808080";
+            }
+        }
+    }
+    function c_all() {
+        con(0);
+        console.log("全部");
+    }
+    function c_algorithm() {
+        con(1);
+        console.log("算法");
+    }
+    function c_data_structure() {
+        con(2);
+        console.log("数据结构");
+    }
+    function c_network() {
+        con(3);
+        console.log("网络");
+    }
+    function c_other() {
+        con(4);
+        console.log("其他");
     }
 </script>
 </body>

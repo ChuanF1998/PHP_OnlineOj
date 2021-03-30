@@ -6,9 +6,12 @@
     <link rel="stylesheet" type="text/css" href="../css/home.css">
     <link rel="stylesheet" type="text/css" href="../css/common.css">
     <style>
-        ul{
-            list-style-type:none;
-            margin: auto;
+        tr:hover {
+            background-color: #F5F5F5;
+        }
+        table{
+            cursor: pointer;
+            border-collapse: collapse;
         }
     </style>
 </head>
@@ -24,14 +27,16 @@
             <button class="search_button" type="button">搜索</button>
         </div>
         <div class="div1">
+            <div class="user0">
             <button class="login_button" type="button">登录/注册</button>
+            </div>
         </div>
     </div>
 
     <div style="display: block;">
         <!--左边题目分类-->
         <div class="question_classes" id="classes">
-            <ul>
+            <ul class="ul_0">
             <li class="li_1"><a id="l0" class="li_a" type="button" onclick="c_all()">全部分类</a></li>
             <li class="li_1"><a id="l1" class="li_a" type="button" onclick="c_algorithm()">算法</a></li>
             <li class="li_1"><a id="l2" class="li_a" type="button" onclick="c_data_structure()">数据结构</a></li>
@@ -50,23 +55,76 @@
                     <a id="a2" class="my_button" type="button" onclick="programing_que()">编程题</a>
                 </div>
                 <!--题目展示-->
-                <div class="question_show">
-                    <div class="title">
-                        <div class="div2" style="margin-left: 30px;">题号</div>
-                        <div class="div2" style="margin-left: 130px;">题目名称</div>
-                        <div class="div2" style="margin-left: 500px;">难度</div>
-                        <div class="div2" style="margin-left: 700px;">通过率</div>
-
-                    </div>
-                </div>
+                <table class="question_show">
+                    <!--标题-->
+                    <tr class="title">
+                        <th class="th0" style="width: 50px"></th>
+                        <th class="th0" >题号</th>
+                        <th class="th0" >题目名称</th>
+                        <th class="th0" >难度</th>
+                        <th class="th0" >通过率</th>
+                    </tr>
+                    <!--题目-->
+                    <tr class="title"  onclick="que_detail()">
+                        <td class="td0" ><div class="td_div0"></div></td>
+                        <td class="td1" >题号</td>
+                        <td class="td1" >题目名称</td>
+                        <td class="td1" >难度</td>
+                        <td class="td1" >通过率</td>
+                    </tr>
+                    <tr class="title"  onclick="que_detail()">
+                        <td class="td0" ><div class="td_div0"></div></td>
+                        <td class="td1" >题号</td>
+                        <td class="td1" >题目名称</td>
+                        <td class="td1" >难度</td>
+                        <td class="td1" >通过率</td>
+                    </tr>
+                    <tr class="title"  onclick="que_detail()">
+                        <td class="td0" ><div class="td_div0"></div></td>
+                        <td class="td1" >题号</td>
+                        <td class="td1" >题目名称</td>
+                        <td class="td1" >难度</td>
+                        <td class="td1" >通过率</td>
+                    </tr>
+                </table>
             </div>
            <!--用户做题详情区域-->
-            <div class="user_situation">
-                asdaafs
+            <div class="user_and_hot" style="margin-top: 60px;">
+                <div class="user1_img">
+                    <img src="../img/user.png" class="user1_img_style" alt="无"/>
+                </div>
+                <div class="user1_name">
+                    德邦总管-赵信
+                </div>
+                <div class="situations" style="margin-top: 80px;">
+                    <text>已挑战：        20/100 题</text>
+                </div>
+                <div class="situations" style="margin-top: 140px;">
+                    <text>已通过：       10/100 题</text>
+                </div>
+                <div class="situations" style="margin-top: 200px">
+                    <text>已提交：       100 次</text>
+                </div>
             </div>
             <!--热点区域-->
-            <div class="question_hot">
-                hikhii
+            <div class="user_and_hot" style="margin-top: 390px;">
+                <table>
+                    <tr>
+                        <th>热刷榜</th>
+                    </tr>
+                    <tr>
+                        <td>ewfasd</td>
+                    </tr>
+                    <tr>
+                        <td>ewfasd</td>
+                    </tr>
+                    <tr>
+                        <td>ewfasd</td>
+                    </tr>
+                    <tr>
+                        <td>ewfasd</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -79,6 +137,8 @@
         if (s_width < 1519) {
             document.getElementById("classes").style.position = "absolute";
         }
+        document.getElementById("a1").style.color = "#48D1CC";
+        document.getElementById("l0").style.color = "#48D1CC";
     }
     window.onresize = function() {
         let s_width = document.documentElement.clientWidth;
@@ -136,6 +196,11 @@
     }
     function c_other() {
         con(4);
+    }
+</script>
+<script>
+    function que_detail() {
+        console.log("eqweqw");
     }
 </script>
 </body>

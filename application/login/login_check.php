@@ -17,7 +17,7 @@ $Feedback = array(
     "message2"=>array(
         "密码错误",
         "<a href=\"javascript:history.back(-1);\">点击返回</a>"
-)
+    )
 );
 
 //先查询数据库中电话是否已经注册过

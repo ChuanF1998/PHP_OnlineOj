@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-<div class="page" style="width: 1510px;">
+<div class="page" style="width: 1500px;">
     <!--导航栏-->
     <div class="navigation">
         <div class="div1">
@@ -27,13 +27,14 @@
             <button class="search_button" type="button">搜索</button>
         </div>
         <div class="div1">
-            <div class="user0">
-            <button class="login_button" type="button">登录/注册</button>
+            <div >
+            <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
+            <img id="user_img0" src="../img/user.png" class="user0_img" />
             </div>
         </div>
     </div>
 
-    <div style="display: block;">
+    <div >
         <!--左边题目分类-->
         <div class="question_classes" id="classes">
             <ul class="ul_0">
@@ -90,38 +91,43 @@
             </div>
            <!--用户做题详情区域-->
             <div class="user_and_hot" style="margin-top: 60px;">
-                <div class="user1_img">
-                    <img src="../img/user.png" class="user1_img_style" alt="无"/>
+                <div id="user_situation_area" style="display: none">
+                    <div class="user1_img">
+                        <img src="../img/user.png" class="user1_img_style" alt="无"/>
+                    </div>
+                    <div class="user1_name">
+                        德邦总管-赵信
+                    </div>
+                    <div class="situations" style="margin-top: 80px;">
+                        <text>已挑战：        20/100 题</text>
+                    </div>
+                    <div class="situations" style="margin-top: 140px;">
+                        <text>已通过：       10/100 题</text>
+                    </div>
+                    <div class="situations" style="margin-top: 200px">
+                        <text>已提交：       100 次</text>
+                    </div>
                 </div>
-                <div class="user1_name">
-                    德邦总管-赵信
-                </div>
-                <div class="situations" style="margin-top: 80px;">
-                    <text>已挑战：        20/100 题</text>
-                </div>
-                <div class="situations" style="margin-top: 140px;">
-                    <text>已通过：       10/100 题</text>
-                </div>
-                <div class="situations" style="margin-top: 200px">
-                    <text>已提交：       100 次</text>
-                </div>
+                <!--未登录时-->
+                <div style="position: absolute;font-size:13px;margin-top: 50px;margin-left: 45px;">登陆后查看刷题详情</div>
+                    <button id="hot_login_button" class="hot_login" onclick="window.location='../login/h_login.html'">登录</button>
             </div>
             <!--热点区域-->
             <div class="user_and_hot" style="margin-top: 390px;">
-                <table>
-                    <tr>
+                <table class="table_hot">
+                    <tr class="hot1">
                         <th>热刷榜</th>
                     </tr>
-                    <tr>
+                    <tr class="hot1" >
                         <td>ewfasd</td>
                     </tr>
-                    <tr>
+                    <tr class="hot1">
                         <td>ewfasd</td>
                     </tr>
-                    <tr>
+                    <tr class="hot1">
                         <td>ewfasd</td>
                     </tr>
-                    <tr>
+                    <tr class="hot1">
                         <td>ewfasd</td>
                     </tr>
                 </table>
@@ -139,6 +145,23 @@
         }
         document.getElementById("a1").style.color = "#48D1CC";
         document.getElementById("l0").style.color = "#48D1CC";
+        let login_button = document.getElementById("login_b");
+        let user_img0 = document.getElementById("user_img0");
+        let user_situation_area = document.getElementById("user_situation_area");
+        let hot_login_button = document.getElementById("hot_login_button");
+        let is_login = false;
+        if (is_login === true) {
+            login_button.style.display = "none";
+            user_img0.style.display = "block";
+            user_situation_area.style.display = "block";
+            hot_login_button.style.display = "none";
+        }
+        else {
+            login_button.style.display = "block";
+            user_img0.style.display = "none";
+            user_situation_area.style.display = "none";
+            hot_login_button.style.display = "block";
+        }
     }
     window.onresize = function() {
         let s_width = document.documentElement.clientWidth;
@@ -167,14 +190,14 @@
     }
 </script>
 <script>
-    var li_all = new Array(5);
-    for (var i = 0; i < 5; ++i) {
-        var str = "l" + i;
+    let li_all = new Array(5);
+    for (let i = 0; i < 5; ++i) {
+        let str = "l" + i;
         li_all[i] = document.getElementById(str);
     }
     function con(k) {
-        for (i = 0; i < 5; ++i) {
-            if (i == k) {
+        for (let i = 0; i < 5; ++i) {
+            if (i === k) {
                 li_all[i].style.color = "#48D1CC";
             }
             else {
@@ -200,7 +223,12 @@
 </script>
 <script>
     function que_detail() {
-        console.log("eqweqw");
+
+    }
+</script>
+<script>
+    function user_login() {
+
     }
 </script>
 </body>

@@ -1,4 +1,7 @@
 <?php
+session_start();
+header("Content-type:text/html;charset=utf-8");
+//setcookie("dd", "da", time() + 3600, '/');
 include("../common/com_func.php");
 
 //创建一个mysql类
@@ -43,7 +46,8 @@ if ($EncryPwd == $obj['password']) {
         (new log("../src/login.txt"))->Login($data);
         $SqlSentence = "update student set is_online='0' where student.id='$stu_id'";
         $MyDatabase->Updata($SqlSentence);
-        Header("Location: http://localhost:63342/application/home/home.html?id=".$obj['id']."");
+        setcookie("ggg", $obj['id'], time() + 3600, '/');
+        Header("Location: http://localhost:63342/application/home/home.php");
         exit('登录成功');
     }
     else {

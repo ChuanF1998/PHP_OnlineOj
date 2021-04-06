@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>主页</title>
     <link rel="stylesheet" type="text/css" href="../css/home.css">
     <link rel="stylesheet" type="text/css" href="../css/common.css">
@@ -15,26 +16,26 @@
         }
     </style>
 </head>
-<body>
-<div class="page" style="width: 1500px;">
+<body style="margin: auto;background-color: #f3f3f6;">
+<div class="page">
     <!--导航栏-->
     <div class="navigation">
         <div class="div1">
             欢迎使用在线代码测验平台
         </div>
         <div class="div1">
-            <input  placeholder="请输入搜索内容" name="keywords" class="input_style"/>
+            <input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/>
             <button class="search_button" type="button">搜索</button>
         </div>
         <div class="div1">
             <div >
             <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-            <img id="user_img0" src="../img/user.png" class="user0_img" />
+            <img id="user_img0" src="../img/user.png" class="user0_img" alt="无"/>
             </div>
         </div>
     </div>
 
-    <div >
+    <div style="width: 1500px;">
         <!--左边题目分类-->
         <div class="question_classes" id="classes">
             <ul class="ul_0">
@@ -73,20 +74,6 @@
                         <td class="td1" >难度</td>
                         <td class="td1" >通过率</td>
                     </tr>
-                    <tr class="title"  onclick="que_detail()">
-                        <td class="td0" ><div class="td_div0"></div></td>
-                        <td class="td1" >题号</td>
-                        <td class="td1" >题目名称</td>
-                        <td class="td1" >难度</td>
-                        <td class="td1" >通过率</td>
-                    </tr>
-                    <tr class="title"  onclick="que_detail()">
-                        <td class="td0" ><div class="td_div0"></div></td>
-                        <td class="td1" >题号</td>
-                        <td class="td1" >题目名称</td>
-                        <td class="td1" >难度</td>
-                        <td class="td1" >通过率</td>
-                    </tr>
                 </table>
             </div>
            <!--用户做题详情区域-->
@@ -109,8 +96,10 @@
                     </div>
                 </div>
                 <!--未登录时-->
+                <div id="hot_login_button">
                 <div style="position: absolute;font-size:13px;margin-top: 50px;margin-left: 45px;">登陆后查看刷题详情</div>
-                    <button id="hot_login_button" class="hot_login" onclick="window.location='../login/h_login.html'">登录</button>
+                    <button  class="hot_login" onclick="window.location='../login/h_login.html'">登录</button>
+                </div>
             </div>
             <!--热点区域-->
             <div class="user_and_hot" style="margin-top: 390px;">
@@ -137,101 +126,9 @@
 
 </div>
 
-<script type="text/javascript" src="http://localhost:63342/application/home/home.php?"></script>
-<script>
-    window.onload = function() {
-        let s_width = document.documentElement.clientWidth;
-        if (s_width < 1519) {
-            document.getElementById("classes").style.position = "absolute";
-        }
-        document.getElementById("a1").style.color = "#48D1CC";
-        document.getElementById("l0").style.color = "#48D1CC";
-        let login_button = document.getElementById("login_b");
-        let user_img0 = document.getElementById("user_img0");
-        let user_situation_area = document.getElementById("user_situation_area");
-        let hot_login_button = document.getElementById("hot_login_button");
-        let is_login = false;
-        if (is_login === true) {
-            login_button.style.display = "none";
-            user_img0.style.display = "block";
-            user_situation_area.style.display = "block";
-            hot_login_button.style.display = "none";
-        }
-        else {
-            login_button.style.display = "block";
-            user_img0.style.display = "none";
-            user_situation_area.style.display = "none";
-            hot_login_button.style.display = "block";
-        }
-    }
-    window.onresize = function() {
-        let s_width = document.documentElement.clientWidth;
-        //let s_height = document.documentElement.clientHeight;
-        console.log(s_width);
-        if (s_width < 1519) {
-            document.getElementById("classes").style.position = "absolute";
-        }
-        else {
-            document.getElementById("classes").style.position = "fixed";
-        }
-    }
-</script>
-<script>
-    function choice_que() {
-        document.getElementById("a1").style.color = "#48D1CC";
-        document.getElementById("a2").style.color = "#808080";
-        console.log("选择题");
-    }
-</script>
-<script>
-    function programing_que() {
-        document.getElementById("a1").style.color = "#808080";
-        document.getElementById("a2").style.color = "#48D1CC";
-        console.log("编程题");
-    }
-</script>
-<script>
-    let li_all = new Array(5);
-    for (let i = 0; i < 5; ++i) {
-        let str = "l" + i;
-        li_all[i] = document.getElementById(str);
-    }
-    function con(k) {
-        for (let i = 0; i < 5; ++i) {
-            if (i === k) {
-                li_all[i].style.color = "#48D1CC";
-            }
-            else {
-                li_all[i].style.color = "#808080";
-            }
-        }
-    }
-    function c_all() {
-        con(0);
-    }
-    function c_algorithm() {
-        con(1);
-    }
-    function c_data_structure() {
-        con(2);
-    }
-    function c_network() {
-        con(3);
-    }
-    function c_other() {
-        con(4);
-    }
-</script>
-<script>
-    function que_detail() {
-
-    }
-</script>
-<script>
-    function user_login() {
-
-    }
-</script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="../js/home_load.js"></script>
+<script type="text/javascript" src="../js/home_option.js"></script>
 </body>
 </html>
 

@@ -1,7 +1,4 @@
 <?php
-if (!isset($_POST['submit'])) {
-    exit('非法访问');
-}
 //包含类的函数
 spl_autoload_register(function ($class_name) {
     require_once '../common/'.$class_name . '.php';

@@ -18,7 +18,7 @@ class connect
 
     //执行数据库插入
     public function Insert($SqlSentence = "") {
-        if ($SqlSentence == "") {
+        if ($SqlSentence === "") {
             return true;
         }
         return mysqli_query($this->SqlConnect, $SqlSentence);
@@ -47,8 +47,26 @@ class connect
         }
     }
 
+    public function MultitermSelect($SqlSentence = "", $way = 0) {
+        if ($SqlSentence == "") {
+            return null;
+        }
+        if ($way == 0) {
+            return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_ASSOC);
+        }
+        else if ($way == 1) {
+            return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_NUM);
+        }
+        else if ($way == 2) {
+            return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_BOTH);
+        }
+        else {
+            return null;
+        }
+    }
+
     public function Updata($SqlSentence = '') {
-        if ($SqlSentence == '') {
+        if ($SqlSentence === '') {
             return false;
         }
         return mysqli_query($this->SqlConnect, $SqlSentence);

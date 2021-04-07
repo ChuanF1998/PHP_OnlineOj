@@ -1,6 +1,8 @@
 <?php
 include("../common/com_func.php");
-
+if (!isset($_POST['submit'])) {
+    exit('非法访问');
+}
 //创建一个mysql类
 $MyDatabase = new connect("online_oj");
 //获取h_register页面中form表单的值

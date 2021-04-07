@@ -1,9 +1,10 @@
 <?php
 session_start();
 header("Content-type:text/html;charset=utf-8");
-//setcookie("dd", "da", time() + 3600, '/');
 include("../common/com_func.php");
-
+if (!isset($_POST['submit'])) {
+    exit('非法访问');
+}
 //创建一个mysql类
 $MyDatabase = new connect("online_oj");
 //获取h_login页面中form表单的值
@@ -47,7 +48,7 @@ if ($EncryPwd == $obj['password']) {
         $SqlSentence = "update student set is_online='0' where student.id='$stu_id'";
         $MyDatabase->Updata($SqlSentence);
         setcookie("ggg", $obj['id'], time() + 3600, '/');
-        Header("Location: http://localhost:63342/application/home/home.php");
+        Header("Location: http://localhost:63342/application/home/home.html");
         exit('登录成功');
     }
     else {

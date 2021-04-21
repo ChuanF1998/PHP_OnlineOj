@@ -47,7 +47,7 @@ if ($EncryPwd == $obj['password']) {
         (new log("../src/login.txt"))->Login($data);
         $SqlSentence = "update student set is_online='0' where student.id='$stu_id'";
         $MyDatabase->Updata($SqlSentence);
-        setcookie("ggg", $obj['id'], time() + 3600, '/');
+        setcookie("user_id", $obj['id'], time() + 3600, '/');
         Header("Location: http://localhost:63342/application/home/home.html");
         exit('登录成功');
     }

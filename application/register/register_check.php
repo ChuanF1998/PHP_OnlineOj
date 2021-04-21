@@ -58,6 +58,8 @@ if ($MyDatabase->Insert($SqlSentence)) {
     $time = (new date())->GetSerDate();
     $data = "Tel[$Tel]  Date[$time] register";
     (new log("../src/register.txt"))->Register($data);
+    //创建文件夹
+    CreateFolder("../src/users/".$Tel);
     //返回信息
     $s = EchoHtml($Feedback,'message2');
     exit($s);

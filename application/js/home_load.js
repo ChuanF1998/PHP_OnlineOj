@@ -2,9 +2,17 @@
 此js文件加载页面所需数据
 */
 //获取用户资料的url
+//let UserUrl = "http://localhost/PHP_OnlineOj/application/home/get_user.php";
 let UserUrl = "http://localhost:63342/application/home/get_user.php";
+
 //获取题目数据的url
+//let DataUrl = "http://localhost/PHP_OnlineOj/application/home/home.php";
 let DataUrl = "http://localhost:63342/application/home/home.php";
+
+//获取做题详情
+let DetailUrl = "http://localhost:63342/application/home/GetAnswerDetail.php";
+//let DetailUrl = "http://localhost/PHP_OnlineOj/application/home/GetAnswerDetail.php";
+
 //当前页面的选择情况
 let Key = {};
 /*
@@ -20,8 +28,10 @@ let QuestionType = 'A';
 * D---其他
 * */
 let QuestionClass = 'Z';
-let QuestionData;
-let User;
+
+let QuestionData;  //题目
+let User;        //用户信息
+let AnswerDetails;   //用户解题详情
 let QueCount = 0; //题目数量
 
 //页面初始化
@@ -47,11 +57,11 @@ function GetData_Ajax(data_url, key) {
             type: "post",
             url: data_url,
             data: key,
-            timeout: 2000,
+            timeout: 5000,
             datatype: 'json',
             success: function (data) {//如果调用php成功,data为执行php文件后的返回值
-                console.log(data);
                 let j_data = eval('(' + data + ')');
+                //console.log(j_data);
                 QuestionData = j_data;
                 QueCount = j_data.length;
                 let s = "";
@@ -89,7 +99,7 @@ function GetUser_Ajax(user_url) {
         type: "post",
         url: user_url,
         data: "",
-        timeout: 2000,
+        timeout: 5000,
         datatype: 'json',
         success: function (data) {
             User = eval('(' + data + ')');
@@ -116,9 +126,30 @@ function GetUser_Ajax(user_url) {
     });
 }
 
+function GetAnswerDetail(DetailUrl) {
+    return $.ajax({
+        type: "post",
+        url: DetailUrl,
+        data: "",
+        timeout: 5000,
+        datatype: "json",
+        success: function (data) {
+            if (data != "null") {
+                let res = data.split(".");
+                //用户做题详情
+                AnswerDetails = eval('(' + res[1] + ')');
+                console.log(AnswerDetails);
+            }
+        },
+        error: function () {
+
+        }
+    })
+}
+
 function DataApply(data_url, user_url, key, but, event) {
     $(but).attr("onclick", "");
-    $.when(GetData_Ajax(data_url, key), GetUser_Ajax(user_url)).done(function () {
+    $.when(GetData_Ajax(data_url, key), GetUser_Ajax(user_url), GetAnswerDetail(DetailUrl)).done(function () {
         $(but).attr("onclick", event);
         if (User["result"] === "1") {
             if (User["img_path"] != null) {
@@ -127,7 +158,7 @@ function DataApply(data_url, user_url, key, but, event) {
             }
             $("#user1_name").text(User["username"]);
             $("#has_challenge").text("已挑战：     " + User["submit_times"] + "/" + QueCount + " 题");
-            $("#has_pass").text("已通过：     " + User["submit_times"] + " 题");
+            $("#has_pass").text("已通过：     " + User["submit_times"] + "/" + QueCount + " 题");
             $("#has_submit").text("已提交：     " + User["submit_times"] + " 次");
         }
     });

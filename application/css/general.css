@@ -1,0 +1,150 @@
+.profile_menu {
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 60px;
+    display: block;
+    height: 700px;
+}
+
+.nk {
+    width: 200px;
+    height: 600px;
+    background-color: #FFFFFF;
+    display: block;
+    float: left;
+    margin: 0 auto;
+}
+
+.ul_1 {
+    position: absolute;
+    list-style-type:none;
+    margin-top: 20px;
+}
+
+.li_2 {
+    width: 100px;
+    height: 30px;
+}
+
+.li_a2 {
+    width: 200px;
+    height: 40px;
+    display: block;
+    cursor: pointer;
+    color: #808080;
+    position: relative;
+    font-size: 17px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.nk-content {
+    float: left;
+    display: block;
+    width: 730px;
+    margin: 0 0 0 10px;
+    background-color: #ffffff;
+}
+
+.module-box {
+    border: 1px solid #e0e0e0;
+
+    display: block;
+}
+
+.module-body {
+    padding: 10px 20px;
+}
+
+.profile-caption {
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d4d4d4;
+    overflow: hidden;
+}
+
+.info-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.ctr-btn-box {
+    margin-top: 5px;
+    float: right;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 0;
+    width: 110px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+    border: none 0;
+    cursor: pointer;
+    line-height: normal;
+    outline: 0;
+    white-space: nowrap;
+}
+
+
+.js-action-btn {
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #25bb9b;
+}
+
+.btn-default {
+    background: #bbb;
+}
+
+.btn-primary {
+    background: #25bb9b;
+}
+
+.info-box dt, .info-edit-box dt {
+    float: left;
+    width: 118px;
+    text-align: right;
+    line-height: 2.8;
+}
+
+.info-box dd {
+    margin-left: 140px;
+    line-height: 2.8;
+    color: #999;
+}
+
+dd {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    display: block;
+    margin-inline-start: 40px;
+}
+
+.info-box dl, .info-edit-box dl {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.control-group {
+    position: relative;
+    width: 260px;
+}
+
+.uneditable-input, input[type=email], input[type=password], input[type=text], textarea {
+    border: 1px solid #ddd;
+    color: #34495e;
+    font-family: Lato, sans-serif;
+    font-size: 14px;
+    padding: 8px 5px 7px;
+    width: 248px;
+    height: 22px;
+    border-radius: 3px;
+    outline: 0;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="../../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../css/general.css">
+    <style>
+        tr:hover {
+            background-color: #F5F5F5;
+        }
+        table{
+            cursor: pointer;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+    <!--导航栏-->
+    <div class="navigation">
+        <div class="div1">
+            欢迎使用在线代码测验平台
+        </div>
+        <div class="div1">
+            <input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/>
+            <button class="search_button" type="button">搜索</button>
+        </div>
+        <div class="div1">
+            <div >
+                <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
+                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile_menu">
+        <!--侧边导航栏200px-->
+        <div class="nk" id="classes">
+            <a id="l0" class="li_a2" type="button" onclick="">基本资料</a>
+            <a id="l1" class="li_a2" type="button" onclick="">刷题记录</a>
+            <a id="l2" class="li_a2" type="button" onclick="">收藏夹</a>
+            <a id="l3" class="li_a2" type="button" onclick="">我的班级</a>
+        </div>
+
+        <!--信息显示栏780px-->
+        <div class="nk-content">
+            <div class="module-box">
+                <div class="module-body">
+                    <div class="profile-info-box" id="">
+                        <div class="profile-caption">
+                            <span class="ctr-btn-box">
+                                <a class="js-action-btn btn btn-info-edit btn-primary" href="javascript:void(0);" style="display: none">编辑</a>
+                                <a class="js-action-btn btn btn-default btn-info-cancel" href="javascript:void(0);">取消</a>
+                                <a class="js-action-btn btn btn-primary btn-info-save btn-baseinfo" href="javascript:void(0);">保存</a>
+                            </span>
+                            <h3 class="info-title">基本信息</h3>
+                        </div>
+                        <div class="js-module-info info-box set-msg-box" id="info-show" style="display: none">
+                            <dl>
+                                <dt>我的头像</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的昵称</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的性别</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的学校</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的专业</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的班级</dt>
+                                <dd>xx</dd>
+                            </dl>
+                        </div>
+
+                        <div class="js-module-info info-box set-msg-box" id="info-modify">
+                            <dl>
+                                <dt>我的头像</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的昵称</dt>
+                                <dd class="control-group"><input type="text" placeholder=""/></dd>
+                            </dl>
+                            <dl>
+                                <dt>我的性别</dt>
+                                <dd>xx</dd>
+                            </dl>
+                            <dl>
+                                <dt>我的学校</dt>
+                                <dd class="control-group"><input type="text" placeholder=""/></dd>
+                            </dl>
+                            <dl>
+                                <dt>我的专业</dt>
+                                <dd class="control-group"><input type="text" placeholder=""/></dd>
+                            </dl>
+                            <dl>
+                                <dt>我的班级</dt>
+                                <dd class="control-group"><input type="text" placeholder=""/></dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../../js/myInformation.js"></script>
+</body>
+</html>

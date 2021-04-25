@@ -6,15 +6,15 @@ header("X-Content-Type-Options: nosniff");
 if (!isset($_COOKIE["user_id"])) {
     exit("null");
 }
+if (!(isset($_POST['QuestionType']) && isset($_POST['QuestionClass']))) {
+    exit("null");
+}
 
-//$UserId = $_COOKIE["user_id"];
-$UserId = 35;
+$UserId = $_COOKIE["user_id"];
 include("../common/com_func.php");
 
-//$Type = $_POST['QuestionType'];
-//$Class = $_POST['QuestionClass'];
-$Type = 'B';
-$Class = 'A';
+$Type = $_POST['QuestionType'];
+$Class = $_POST['QuestionClass'];
 
 //连接数据库
 $MyDatabase = new connect("online_oj");
@@ -23,7 +23,7 @@ $Table = "answer_details";
 $SqlSentence = "";
 //获取某用户答题次数
 if ($Class === 'Z') {
-    $SqlSentence = "select Count(*) as submit_times from $Table where user_id='$UserId'";
+    $SqlSentence = "select Count(*) as submit_times from $Table where user_id='$UserId' and types='$Type'";
 }
 else {
     $SqlSentence = "select Count(*) as submit_times from $Table where user_id='$UserId' and types='$Type' and species='$Class'";

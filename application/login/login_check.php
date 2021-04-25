@@ -48,8 +48,8 @@ if ($EncryPwd == $obj['password']) {
         $SqlSentence = "update student set is_online='0' where student.id='$stu_id'";
         $MyDatabase->Updata($SqlSentence);
         setcookie("user_id", $obj['id'], time() + 3600, '/');
-        //Header("Location: http://localhost/PHP_OnlineOj/application/home/home.html");
-        Header("Location: http://localhost:63342/application/home/home.html");
+        Header("Location: http://localhost/PHP_OnlineOj/application/home/home.html");
+        //Header("Location: http://localhost:63342/application/home/home.html");
         exit('登录成功');
     }
     else {

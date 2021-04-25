@@ -23,10 +23,9 @@ function choice_que() {
     QuestionType = 'A';
     document.getElementById("a1").style.color = "#48D1CC";
     document.getElementById("a2").style.color = "#808080";
-    console.log("选择题");
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    DataApply(DataUrl, UserUrl, Key, "#a1", "choice_que()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#a1", "choice_que()");
 }
 /*
 编程题按钮
@@ -36,11 +35,9 @@ function programing_que() {
     QuestionType = 'B';
     document.getElementById("a1").style.color = "#808080";
     document.getElementById("a2").style.color = "#48D1CC";
-    console.log("编程题");
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    console.log(Key);
-    DataApply(DataUrl, UserUrl, Key, "a2", "programing_que()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#a2", "programing_que()");
 }
 /*
 左边分类框5个选项
@@ -62,7 +59,7 @@ function c_all() {
     con(0);
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    DataApply(DataUrl, UserUrl, Key, "l0","c_all()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#l0","c_all()");
 }
 //算法题
 function c_algorithm() {
@@ -71,7 +68,7 @@ function c_algorithm() {
     con(1);
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    DataApply(DataUrl, UserUrl, Key, "l1", "c_algorithm()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#l1", "c_algorithm()");
 }
 //数据结构题
 function c_data_structure() {
@@ -80,7 +77,7 @@ function c_data_structure() {
     con(2);
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    DataApply(DataUrl, UserUrl, Key, "l2", "c_data_structure()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#l2", "c_data_structure()");
 }
 //网络题
 function c_network() {
@@ -89,7 +86,7 @@ function c_network() {
     con(3);
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    DataApply(DataUrl, UserUrl, Key, "l3", "c_network()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#l3", "c_network()");
 }
 //其他分类题目
 function c_other() {
@@ -98,7 +95,7 @@ function c_other() {
     con(4);
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
-    DataApply(DataUrl, UserUrl, Key, "l4", "c_other()");
+    DataApply(DataUrl, UserUrl, DetailUrl, Key, "#l4", "c_other()");
 }
 
 /*

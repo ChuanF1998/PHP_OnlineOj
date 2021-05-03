@@ -34,7 +34,8 @@
         <div class="div1">
             <div >
                 <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>
+                <!--<img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>-->
+                <img id="user_img0" src="http://localhost:63342/application/src/icon/default.png" class="user0_img" alt=""/>
             </div>
         </div>
     </div>
@@ -55,47 +56,50 @@
                     <div class="profile-info-box" id="">
                         <div class="profile-caption">
                             <span class="ctr-btn-box">
-                                <a class="js-action-btn btn btn-info-edit btn-primary" href="javascript:void(0);" style="display: none">编辑</a>
-                                <a class="js-action-btn btn btn-default btn-info-cancel" href="javascript:void(0);">取消</a>
-                                <a class="js-action-btn btn btn-primary btn-info-save btn-baseinfo" href="javascript:void(0);">保存</a>
+                                <a class="js-action-btn btn btn-info-edit btn-primary" id="spanA1" onclick="edit()" href="javascript:void(0);">编辑</a>
+                                <a class="js-action-btn btn btn-default btn-info-cancel" id="spanA2" onclick="cancel()" href="javascript:void(0);">取消</a>
+                                <a class="js-action-btn btn btn-primary btn-info-save" id="spanA3" onclick="save()" href="javascript:void(0);">保存</a>
                             </span>
                             <h3 class="info-title">基本信息</h3>
                         </div>
-                        <div class="js-module-info info-box set-msg-box" id="info-show" style="display: none">
+                        <div class="js-module-info info-box set-msg-box" id="info-show">
                             <dl>
                                 <dt>我的头像</dt>
-                                <dd>xx</dd>
+                                <dd><span class="portrait">&nbsp</span></dd>
                             </dl>
                             <dl>
                                 <dt>我的昵称</dt>
-                                <dd>xx</dd>
+                                <dd id="nickname">xx</dd>
                             </dl>
                             <dl>
                                 <dt>我的性别</dt>
-                                <dd>xx</dd>
+                                <dd><span class="gender"></span></dd>
                             </dl>
                             <dl>
                                 <dt>我的学校</dt>
-                                <dd>xx</dd>
+                                <dd id="school">xx</dd>
                             </dl>
                             <dl>
                                 <dt>我的专业</dt>
-                                <dd>xx</dd>
+                                <dd id="major">xx</dd>
                             </dl>
                             <dl>
                                 <dt>我的班级</dt>
-                                <dd>xx</dd>
+                                <dd id="class">xx</dd>
                             </dl>
                         </div>
 
                         <div class="js-module-info info-box set-msg-box" id="info-modify">
                             <dl>
                                 <dt>我的头像</dt>
-                                <dd>xx</dd>
+                                <dd>
+                                    <label><input type="file" style=""/></label>
+                                    <!--<button>上传头像</button>-->
+                                </dd>
                             </dl>
                             <dl>
                                 <dt>我的昵称</dt>
-                                <dd class="control-group"><label><input type="text" placeholder=""/></label></dd>
+                                <dd class="control-group"><label form="sd"><input name="nickname" type="text"/></label></dd>
                             </dl>
                             <dl>
                                 <dt>我的性别</dt>
@@ -103,15 +107,15 @@
                             </dl>
                             <dl>
                                 <dt>我的学校</dt>
-                                <dd class="control-group"><label><input type="text" placeholder=""/></label></dd>
+                                <dd class="control-group"><label><input name="school" type="text"/></label></dd>
                             </dl>
                             <dl>
                                 <dt>我的专业</dt>
-                                <dd class="control-group"><label><input type="text" placeholder=""/></label></dd>
+                                <dd class="control-group"><label><input name="major" type="text"/></label></dd>
                             </dl>
                             <dl>
                                 <dt>我的班级</dt>
-                                <dd class="control-group"><label><input type="text" placeholder=""/></label></dd>
+                                <dd class="control-group"><label><input name="class" type="text"/></label></dd>
                             </dl>
                         </div>
                     </div>

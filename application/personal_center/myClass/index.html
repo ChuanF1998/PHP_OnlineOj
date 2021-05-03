@@ -26,13 +26,13 @@
             欢迎使用在线代码测验平台
         </div>
         <div class="div1">
-            <input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/>
+            <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
             <button class="search_button" type="button">搜索</button>
         </div>
         <div class="div1">
             <div >
                 <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>
+                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
             </div>
         </div>
     </div>
@@ -50,14 +50,28 @@
         <div class="nk-content">
             <div class="module-box">
                 <div class="module-body">
-                    <div class="profile-info-box" id="">
-                        ll
-                        <!--                        <div class="module-box">
-                                                    <div class="module-body">
-                                                        ss
-                                                    </div>
-                                                </div>-->
+                    <div class="filter-bar">
+                        <p class="filter-title">我的班级</p>
+                        <span class="ctr-btn-box">
+                                <a class="js-action-btn btn btn-primary btn-info-save btn-baseinfo" onclick="join()" href="javascript:void(0);">加入班级</a>
+                            </span>
                     </div>
+                    <table class="table_submit">
+                        <thead>
+                        <tr>
+                            <td data-v-4bedaae3 class="t-subject-title">班级名称</td>
+                            <td data-v-4bedaae3 class="t-subject-title">简介</td>
+                            <td data-v-4bedaae3 class="t-subject-title">负责老师</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-v-4bedaae3 class="js-nc-wrap-link" onclick="scapeToClass()">
+                            <td class="t-subject-title">12344</td>
+                            <td class="t-subject-title">sdfdasfsd</td>
+                            <td class="t-subject-title">sdfdasfsd</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

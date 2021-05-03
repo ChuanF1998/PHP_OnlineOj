@@ -1,7 +1,7 @@
 <?php
 session_start();
 header("Content-type:text/html;charset=utf-8");
-include("../common/com_func.php");
+include("../common/php/com_func.php");
 if (!isset($_POST['submit'])) {
     exit('非法访问');
 }
@@ -44,7 +44,7 @@ if ($EncryPwd == $obj['password']) {
         //写入日志
         $time = (new date())->GetSerDate();
         $data = "Tel[$Tel] Date[$time] login in";
-        (new log("../src/login.txt"))->Login($data);
+        (new log("../src/log/login.txt"))->Login($data);
         $SqlSentence = "update student set is_online='0' where student.id='$stu_id'";
         $MyDatabase->Updata($SqlSentence);
         setcookie("user_id", $obj['id'], time() + 3600, '/');

@@ -1,7 +1,7 @@
 <?php
 session_start();
 header("X-Content-Type-Options: nosniff");
-include("../common/com_func.php");
+include("../../common/php/com_func.php");
 
 if (!(isset($_POST['QuestionType']) && isset($_POST['QuestionClass']))) {
     exit("null");

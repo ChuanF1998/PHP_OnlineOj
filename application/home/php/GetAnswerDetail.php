@@ -11,7 +11,7 @@ if (!(isset($_POST['QuestionType']) && isset($_POST['QuestionClass']))) {
 }
 
 $UserId = $_COOKIE["user_id"];
-include("../common/com_func.php");
+include("../../common/php/com_func.php");
 
 $Type = $_POST['QuestionType'];
 $Class = $_POST['QuestionClass'];

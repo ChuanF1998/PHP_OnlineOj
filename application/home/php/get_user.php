@@ -6,7 +6,7 @@ if (!isset($_COOKIE["user_id"])) {
 }
 $UserId = $_COOKIE["user_id"];
 //$UserId = 35;
-include("../common/com_func.php");
+include("../../common/php/com_func.php");
 
 $MyDatabase = new connect("online_oj");
 $SqlSentence = "select id,tel,username,submit_times,pass_times from student where id=$UserId";

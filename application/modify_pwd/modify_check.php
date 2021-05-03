@@ -1,5 +1,5 @@
 <?php
-include("../common/com_func.php");
+include("../common/php/com_func.php");
 if (!isset($_POST['submit'])) {
     exit('非法访问');
 }
@@ -55,7 +55,7 @@ $SqlSentence = "update student set password='$EncryPwd' where student.id='$stu_i
 if ($MyDatabase->Updata($SqlSentence)) {
     $time = (new date())->GetSerDate();
     $data = "Tel[$Tel]  Date[$time] modify password";
-    (new log())->ModifyPwd($data);
+    (new log("../src/log/modify.txt"))->ModifyPwd($data);
     $s = EchoHtml($Feedback,'message2');
     exit($s);
 }

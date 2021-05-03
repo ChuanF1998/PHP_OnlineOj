@@ -1,5 +1,5 @@
 <?php
-include("../common/com_func.php");
+include("../common/php/com_func.php");
 if (!isset($_POST['submit'])) {
     exit('非法访问');
 }
@@ -57,7 +57,7 @@ if ($MyDatabase->Insert($SqlSentence)) {
     //写入日志
     $time = (new date())->GetSerDate();
     $data = "Tel[$Tel]  Date[$time] register";
-    (new log("../src/register.txt"))->Register($data);
+    (new log("../src/log/register.txt"))->Register($data);
     //创建文件夹
     CreateFolder("../src/users/".$Tel);
     //返回信息

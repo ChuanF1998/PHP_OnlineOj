@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>班级管理</title>
+    <!--<link rel="stylesheet" type="text/css" href="index.css">-->
+    <link rel="stylesheet" type="text/css" href="../../common/css/common.css">
+    <link rel="stylesheet"  href="../../common/css/general.css">
+    <style>
+        tr:hover {
+            background-color: #F5F5F5;
+        }
+        table{
+            cursor: pointer;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+    <div class="navigation">
+        <div class="div1">
+            欢迎使用在线代码测验平台
+        </div>
+        <!--        <div class="div1">
+                    <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
+                    <button class="search_button" type="button">搜索</button>
+                </div>-->
+        <div class="div1">
+            <div >
+                <!--            <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>-->
+                <!--            &lt;!&ndash;<img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>&ndash;&gt;-->
+                <img id="user_img0" src="http://localhost:63342/application/src/icon/default.png" class="user0_img" alt=""/>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile_menu">
+        <!--侧边导航栏200px-->
+        <div class="nk" id="classes">
+<!--            <a id="l0" class="li_a2" type="button" onclick="infoOption()">基本资料</a>-->
+            <a id="l1" class="li_a2" type="button" onclick="classManage()">班级管理</a>
+            <a id="l2" class="li_a2" type="button" onclick="questionUpload()">试题上传</a>
+        </div>
+
+        <!--信息显示栏780px-->
+        <div class="nk-content">
+            <div class="module-box">
+                <div class="module-body">
+                    <div class="filter-bar">
+                        <p class="filter-title">我的班级</p>
+                        <span class="ctr-btn-box">
+                                <a class="js-action-btn btn btn-info-edit btn-primary" id="spanA1" onclick="edit()" href="javascript:void(0);">创建班级</a>
+                                <a class="js-action-btn btn btn-default btn-info-cancel" id="spanA2" onclick="cancel()" href="javascript:void(0);">取消</a>
+                                <a class="js-action-btn btn btn-primary btn-info-save" id="spanA3" onclick="save()" href="javascript:void(0);">保存</a>
+                        </span>
+                    </div>
+                    <table class="table_submit" id="class-table">
+                        <thead>
+                        <tr>
+                            <td data-v-4bedaae3 class="t-subject-title">班级名称</td>
+                            <td data-v-4bedaae3 class="t-subject-title">简介</td>
+                            <td data-v-4bedaae3 class="t-subject-title">学生人数</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr data-v-4bedaae3 class="js-nc-wrap-link" onclick="scapeToClass()">
+                            <td class="t-subject-title">12344</td>
+                            <td class="t-subject-title">sdfdasfsd</td>
+                            <td class="t-subject-title">sdfdasfsd</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="js-module-info info-box set-msg-box" id="class-create">
+                        <dl>
+                            <dt>班级名称</dt>
+                            <dd class="control-group"><label><input name="className" type="text"/></label></dd>
+                        </dl>
+                        <dl>
+                            <dt>班级简介</dt>
+                            <dd class="control-group"><label><input name="classDescribe" type="text"/></label></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../jquery/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/getClasses.js"></script>
+</body>
+</html>

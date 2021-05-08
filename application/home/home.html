@@ -10,6 +10,9 @@
         tr:hover {
             background-color: #F5F5F5;
         }
+        img {
+            cursor: pointer;
+        }
         table{
             cursor: pointer;
             border-collapse: collapse;
@@ -24,13 +27,13 @@
             欢迎使用在线代码测验平台
         </div>
         <div class="div1">
-            <input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/>
+            <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
             <button class="search_button" type="button">搜索</button>
         </div>
         <div class="div1">
             <div >
             <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-            <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
+            <img onclick="scapeToUser()" id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
             </div>
         </div>
     </div>
@@ -79,10 +82,8 @@
 
                     </div>
                     <div id="has_challenge" class="situations" style="margin-top: 80px;">
-                        <text>已挑战：        20/100 题</text>
                     </div>
                     <div id="has_pass" class="situations" style="margin-top: 140px;">
-                        <text>已通过：       10/100 题</text>
                     </div>
                     <div id="has_submit" class="situations" style="margin-top: 200px">
                     </div>
@@ -121,6 +122,14 @@
 <script type="text/javascript" src="../jquery/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/home_load.js"></script>
 <script type="text/javascript" src="js/home_option.js"></script>
+<script type="text/javascript">
+    //点击头像跳转
+    function scapeToUser() {
+        window.location.href = 'http://localhost/PHP_OnlineOj/application/personal_center/myInformation/';
+        //window.location.href = 'http://localhost/PHP_OnlineOj/application/personal_center/myInformation/?id='+UserId;
+    }
+
+</script>
 </body>
 </html>
 

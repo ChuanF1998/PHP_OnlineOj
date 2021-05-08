@@ -78,16 +78,28 @@
 .portrait {
     width: 26px;
     height: 26px;
-    background: url("http://localhost:63342/application/src/icon/default.png")no-repeat;
+    /*background: url("http://localhost:63342/application/src/icon/default.png")no-repeat;*/
+    background: url("http://localhost/PHP_OnlineOj/application/src/icon/default.png")no-repeat;
     background-size: 26px 26px;
+    border-radius: 50%;
     display: inline-block;
     vertical-align: middle;
 }
 
-.gender {
+.male {
     width: 26px;
     height: 26px;
-    background: url("http://localhost:63342/application/src/icon/male.png")no-repeat;
+    /*background: url("http://localhost:63342/application/src/icon/male.png")no-repeat;*/
+    background: url("http://localhost/PHP_OnlineOj/application/src/icon/male.png")no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.female {
+    width: 26px;
+    height: 26px;
+    /*background: url("http://localhost:63342/application/src/icon/famale.png")no-repeat;*/
+    background: url("http://localhost/PHP_OnlineOj/application/src/icon/female.png")no-repeat;
     display: inline-block;
     vertical-align: middle;
 }

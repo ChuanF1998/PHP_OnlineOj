@@ -2,16 +2,16 @@
 此js文件加载页面所需数据
 */
 //获取用户资料的url
-let UserUrl = "http://localhost/PHP_OnlineOj/application/home/get_user.php";
-//let UserUrl = "http://localhost:63342/application/home/get_user.php";
+let UserUrl = "http://localhost/PHP_OnlineOj/application/home/php/get_user.php";
+//let UserUrl = "http://localhost:63342/application/home/js/get_user.php";
 
 //获取题目数据的url
-let DataUrl = "http://localhost/PHP_OnlineOj/application/home/home.php";
-//let DataUrl = "http://localhost:63342/application/home/home.php";
+let DataUrl = "http://localhost/PHP_OnlineOj/application/home/php/home.php";
+//let DataUrl = "http://localhost:63342/application/home/js/home.php";
 
 //获取做题详情
-//let DetailUrl = "http://localhost:63342/application/home/GetAnswerDetail.php";
-let DetailUrl = "http://localhost/PHP_OnlineOj/application/home/GetAnswerDetail.php";
+//let DetailUrl = "http://localhost:63342/application/home/js/GetAnswerDetail.php";
+let DetailUrl = "http://localhost/PHP_OnlineOj/application/home/php/GetAnswerDetail.php";
 
 //当前页面的选择情况
 let Key = {};
@@ -31,6 +31,7 @@ let QuestionClass = 'Z';
 
 let QuestionData;  //题目
 let User;        //用户信息
+let UserId;       //用户id
 let AnswerDetails;   //用户解题详情
 let QueCount = 0; //题目数量
 
@@ -60,6 +61,7 @@ function GetData_Ajax(data_url, key) {
             timeout: 5000,
             datatype: 'json',
             success: function (data) {//如果调用php成功,data为执行php文件后的返回值
+                //console.log(data);
                 if (data !== "null") {
                     let j_data = eval('(' + data + ')');
                     //console.log(j_data);
@@ -104,7 +106,7 @@ function GetUser_Ajax(user_url) {
         timeout: 5000,
         datatype: 'json',
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             User = eval('(' + data + ')');
             if (User["result"] === "0") {
                 //未登录时，页面显示情况
@@ -137,7 +139,7 @@ function GetAnswerDetail(DetailUrl, key) {
         timeout: 5000,
         datatype: "json",
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             if (data !== "null") {
                 let res = data.split(".");
                 //用户做题详情
@@ -160,6 +162,7 @@ function DataApply(data_url, user_url, DetailUrl,key, button, event) {
                 $("#user_img0").attr("src", User['img_path']);
                 $("#user_img1").attr("src", User['img_path']);
             }
+            UserId = User['id'];
             $("#user1_name").text(User["username"]);
             $("#has_challenge").text("已挑战：     " + AnswerDetails["submit_questions"] + "/" + QueCount + " 题");
             $("#has_pass").text("已通过：     " + AnswerDetails["pass_questions"] + "/" + QueCount + " 题");

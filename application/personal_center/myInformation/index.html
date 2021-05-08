@@ -32,11 +32,8 @@
             <button class="search_button" type="button">搜索</button>
         </div>
         <div class="div1">
-            <div >
-                <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-                <!--<img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>-->
-                <img id="user_img0" src="http://localhost:63342/application/src/icon/default.png" class="user0_img" alt=""/>
-            </div>
+                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
+                <!--<img id="user_img0" src="http://localhost:63342/application/src/icon/default.png" class="user0_img" alt=""/>-->
         </div>
     </div>
 
@@ -69,23 +66,23 @@
                             </dl>
                             <dl>
                                 <dt>我的昵称</dt>
-                                <dd id="nickname">xx</dd>
+                                <dd id="nickname">&nbsp</dd>
                             </dl>
                             <dl>
                                 <dt>我的性别</dt>
-                                <dd><span class="gender"></span></dd>
+                                <dd><span id="gender">&nbsp</span></dd>
                             </dl>
                             <dl>
                                 <dt>我的学校</dt>
-                                <dd id="school">xx</dd>
+                                <dd id="school">&nbsp</dd>
                             </dl>
                             <dl>
                                 <dt>我的专业</dt>
-                                <dd id="major">xx</dd>
+                                <dd id="major">&nbsp</dd>
                             </dl>
                             <dl>
                                 <dt>我的班级</dt>
-                                <dd id="class">xx</dd>
+                                <dd id="class">&nbsp</dd>
                             </dl>
                         </div>
 
@@ -93,29 +90,32 @@
                             <dl>
                                 <dt>我的头像</dt>
                                 <dd>
-                                    <label><input type="file" style=""/></label>
+                                    <label><input type="file" name="myImgFile"/></label>
                                     <!--<button>上传头像</button>-->
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>我的昵称</dt>
-                                <dd class="control-group"><label form="sd"><input name="nickname" type="text"/></label></dd>
+                                <dd class="control-group"><label><input name="myNickname" type="text"/></label></dd>
                             </dl>
                             <dl>
                                 <dt>我的性别</dt>
-                                <dd>xx</dd>
+                                <dd>
+                                    <label for="male">男</label><input type="radio" name="myGender" id="male" value="1"/>
+                                    <label for="female">女</label><input type="radio" name="myGender" id="female" value="0"/>
+                                </dd>
                             </dl>
                             <dl>
                                 <dt>我的学校</dt>
-                                <dd class="control-group"><label><input name="school" type="text"/></label></dd>
+                                <dd class="control-group"><label><input name="mySchool" type="text"/></label></dd>
                             </dl>
                             <dl>
                                 <dt>我的专业</dt>
-                                <dd class="control-group"><label><input name="major" type="text"/></label></dd>
+                                <dd class="control-group"><label><input name="myMajor" type="text"/></label></dd>
                             </dl>
                             <dl>
                                 <dt>我的班级</dt>
-                                <dd class="control-group"><label><input name="class" type="text"/></label></dd>
+                                <dd class="control-group"><label><input name="myClass" type="text"/></label></dd>
                             </dl>
                         </div>
                     </div>

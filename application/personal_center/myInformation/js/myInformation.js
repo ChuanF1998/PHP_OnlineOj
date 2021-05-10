@@ -1,8 +1,7 @@
-let getIdUrl = "http://localhost/PHP_OnlineOj/application/common/php/getUserId.php"; //获取cookie的id值
-let userInfoUrl = "http://localhost/PHP_OnlineOj/application/personal_center/myInformation/php/getInformation.php";
+let userInfoUrl = "http://localhost/PHP_OnlineOj/application/common/php/getInformation.php";
+let userDataUploadUrl = "http://localhost/PHP_OnlineOj/application/personal_center/myInformation/php/dataUpload.php";
 
 let UserInfo;
-
 
 $(document).ready(function () {
 /*    let thisURL = document.URL;
@@ -12,25 +11,9 @@ $(document).ready(function () {
     if (id === '-1') {
         window.location.href = 'http://localhost/PHP_OnlineOj/application/login/h_login.html';
     }*/
-    $.ajax({
-        //async: false,
-        type: "post",
-        url: getIdUrl,
-        data: "",
-        timeout: 2000,
-        datatype: 'json',
-        success: function (data) {//如果调用php成功,data为执行php文件后的返回值
-            //console.log(data);
-            if (data === "null") {
-                window.location.href = 'http://localhost/PHP_OnlineOj/application/login/h_login.html';
-            }
-        },
-        error: function () {
-            alert("未知错误！");
-            window.location.href = 'http://localhost/PHP_OnlineOj/application/login/h_login.html';
-        }
-    })
+    getId();
     getUserData();
+    $("#user_img0").css("display", "block");
     $("#l0").css({"background-color": "#f6f6f6","color": "#25bb9b"});
     $("#l1").css({"background-color": "#ffffff","color": "#333333"});
     $("#l2").css({"background-color": "#ffffff","color": "#333333"});
@@ -40,6 +23,7 @@ $(document).ready(function () {
     $("#spanA3").hide();
     $("#info-show").css("display", "block");
     $("#info-modify").css("display", "none");
+    $("#info-loading").css("display", "none");
 })
 
 function edit() {
@@ -63,8 +47,7 @@ function cancel() {
     $("#info-modify").css("display", "none");
     $("input[type='radio'][name='myGender']:checked").prop('checked', false);
     let imgFile = $("input[name='myImgFile']")[0];
-    let tmp = imgFile.outerHTML;
-    imgFile.outerHTML = tmp;
+    imgFile.outerHTML = imgFile.outerHTML;
 }
 
 function save() {
@@ -79,9 +62,39 @@ function save() {
     let myClass = $("input[name='myClass']").val();
     let myGender = $("input[name='myGender']:checked").val();
     let myImgFile = $("input[name='myImgFile']")[0].files[0];
-    //let myImgFile = $("#myNickname")[0].files[0];
     $("input[type='radio'][name='myGender']:checked").prop('checked', false);
-    console.log(myImgFile.name,myImgFile.size,myImgFile.type);
+    let formData = new FormData();
+    formData.append('myNickname', myNickname);
+    formData.append('mySchool', mySchool);
+    formData.append('myMajor', myMajor);
+    formData.append('myClass', myClass);
+    formData.append('myGender', myGender);
+    formData.append('myImgFile', myImgFile);
+    formData.append('myTel', UserInfo['tel']);
+
+    $.ajax({
+        async:false,
+        type: "post",
+        url: userDataUploadUrl,
+        data: formData,
+        timeout: 10000,
+        datatype: 'text',
+        beforeSend: function() {
+            $("#info-show").css("display", "none");
+            $("#info-loading").css("display", "flex");
+        },
+        cache:false,
+        processData:false,
+        contentType:false,
+        success: function (data) {
+            window.location.reload();
+            $("#info-loading").css("display", "none");
+            $("#info-show").css("display", "block");
+        },
+        error: function () {
+            alert("修改失败！");
+        }
+    });
 }
 
 function getUserData() {
@@ -92,21 +105,23 @@ function getUserData() {
         timeout: 5000,
         datatype: 'json',
         success: function (data) {//如果调用php成功,data为执行php文件后的返回值
-            if (data !== "null"){
-                UserInfo = eval('('+data+')');
-                $("#user_img0").css("display", "block").attr("src", UserInfo['img_path']);
-                $(".portrait").css({"background": "url("+UserInfo['img_path']+")", "background-size":"26px 26px"});
+            UserInfo = eval('('+data+')');
+            if (UserInfo['status'] === "900"){
+                //UserInfo = eval('('+data+')');
+                if (UserInfo['img_path'] !== "null") {
+                    $("#user_img0").attr("src", UserInfo['img_path']);
+                    $(".portrait").css({"background": "url("+UserInfo['img_path']+")", "background-size":"26px 26px"});
+                }
                 $("#nickname").text(UserInfo['username']);
                 if (UserInfo['gender'] === '0') {
                     $("#gender").attr("class", "female");
                 }
-                else {
+                if (UserInfo['gender'] === '1') {
                     $("#gender").attr("class", "male");
                 }
                 $("#school").text(UserInfo['school']);
                 $("#major").text(UserInfo['major']);
                 $("#class").text(UserInfo['class']);
-                console.log(UserInfo);
             }
         },
         error: function () {

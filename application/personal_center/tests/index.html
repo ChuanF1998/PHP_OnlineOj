@@ -31,8 +31,7 @@
         </div>
         <div class="div1">
             <div >
-                <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>
+                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
             </div>
         </div>
     </div>
@@ -52,8 +51,12 @@
                 <div class="module-body">
                     <div class="filter-bar">
                         <p class="filter-title">提交记录</p>
+                        <span class="span-style">
+                            <button id="button1" onclick="choice()">选择题</button>
+                            <button id="button2" onclick="programing()">编程题</button>
+                        </span>
                     </div>
-                    <table data-v-4bedaae3 class="table_submit">
+                    <table data-v-4bedaae3 class="table_submit" id="tab-programing">
                         <thead data-v-4bedaae3>
                         <tr data-v-4bedaae3>
                             <td data-v-4bedaae3 class="t-subject-title">题号</td>
@@ -67,20 +70,22 @@
                         <tr data-v-4bedaae3 class="js-nc-wrap-link">
                             <td data-v-4bedaae3 class="t-subject-title">1234</td>
                             <td data-v-4bedaae3 class="t-subject-title">赵信</td>
+                            <td data-v-4bedaae3 class="t-subject-title">asdfsddfasdfasdfdasfsd</td>
                             <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
                             <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
-                            <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
-
-                        </tr>
-                        <tr data-v-4bedaae3 class="js-nc-wrap-link">
-                            <td data-v-4bedaae3 class="t-subject-title">12344</td>
-                            <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
-                            <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
-                            <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
-                            <td data-v-4bedaae3 class="t-subject-title">sdfdasfsd</td>
-
                         </tr>
                         </tbody>
+                    </table>
+
+                    <table data-v-4bedaae3 class="table_submit" id="tab-choice" style="display: none">
+                        <thead data-v-4bedaae3>
+                        <tr data-v-4bedaae3>
+                            <td data-v-4bedaae3 class="t-subject-title">题号</td>
+                            <td data-v-4bedaae3 class="t-subject-title">题目</td>
+                            <td data-v-4bedaae3 class="t-subject-title">提交时间</td>
+                            <td data-v-4bedaae3 class="t-subject-title">状态</td>
+                        </tr>
+                        </thead>
                     </table>
                 </div>
             </div>
@@ -91,7 +96,8 @@
 </div>
 
 <script type="text/javascript" src="../../jquery/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/tests.js"></script>
+<script type="text/javascript" src="../../common/js/common.js"></script>
 <script type="text/javascript" src="../perCenterOption.js"></script>
+<script type="text/javascript" src="js/tests.js"></script>
 </body>
 </html>

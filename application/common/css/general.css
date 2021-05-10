@@ -262,3 +262,31 @@ tbody {
 .table_submit tr {
     height: 40px;
 }
+
+.info-load {
+    width: 700px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.span-style {
+    float: right;
+}
+
+.span-style button {
+    border: 1px solid #ffffff;
+    width: 90px;
+    height: 40px;
+    font-size: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.color-green {
+    color: #25bb9b;
+}
+
+.color-red {
+    color: #ea0e07;
+}

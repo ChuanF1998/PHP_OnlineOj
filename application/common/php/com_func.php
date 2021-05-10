@@ -64,7 +64,7 @@ function PregMatchFile($path = "", $str = "") {
     if ($handle = opendir($path)) {
         while (false !== ($file = readdir($handle))) {
             if ($file != "." && $file != "..") {
-                $ImgFile = preg_match($str, $file);// 找出带有php的文件名称
+                $ImgFile = preg_match($str, $file);
                 if ($ImgFile) {
                     array_push($arr, $file);
                 }
@@ -73,4 +73,24 @@ function PregMatchFile($path = "", $str = "") {
         closedir($handle);
     }
     return $arr;
+}
+
+//获取文件后缀
+function get_extension($file)
+{
+    return substr(strrchr($file, '.'), 1);
+}
+
+//判断文件是否为图片
+function isImage($filename) {
+    $types = '.gif|.jpeg|.png|.bmp|.jpg';
+    //定义检查的图片类型
+    if(file_exists($filename)) {
+        $info = getimagesize($filename);
+        $ext = image_type_to_extension($info['2']);
+        return stripos($types, $ext);
+    }
+    else {
+        return false;
+    }
 }

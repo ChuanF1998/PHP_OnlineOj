@@ -33,8 +33,13 @@ class connect
         if ($SqlSentence == "") {
             return null;
         }
+        $obj = mysqli_query($this->SqlConnect, $SqlSentence);
+        if (mysqli_num_rows($obj) < 1) {
+            return "841";
+        }
         if ($way == 0) {
-            return mysqli_fetch_array(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_ASSOC);
+            //return mysqli_fetch_array(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_ASSOC);
+            return mysqli_fetch_array($obj, MYSQLI_ASSOC);
         }
         else if ($way == 1) {
             return mysqli_fetch_array(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_NUM);
@@ -51,8 +56,12 @@ class connect
         if ($SqlSentence == "") {
             return null;
         }
+        $obj = mysqli_query($this->SqlConnect, $SqlSentence);
+        if (mysqli_num_rows($obj) < 1) {
+            return "841";
+        }
         if ($way == 0) {
-            return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_ASSOC);
+            return mysqli_fetch_all($obj, MYSQLI_ASSOC);
         }
         else if ($way == 1) {
             return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_NUM);

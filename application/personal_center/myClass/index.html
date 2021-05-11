@@ -11,10 +11,6 @@
         tr:hover {
             background-color: #F5F5F5;
         }
-        table{
-            cursor: pointer;
-            border-collapse: collapse;
-        }
     </style>
 </head>
 
@@ -52,24 +48,18 @@
                     <div class="filter-bar">
                         <p class="filter-title">我的班级</p>
                         <span class="ctr-btn-box">
-                                <a class="js-action-btn btn btn-primary btn-info-save btn-baseinfo" onclick="join()" href="javascript:void(0);">加入班级</a>
+                                <a class="js-action-btn btn btn-primary btn-info-save btn-baseinfo" id="a-join" onclick="join()" href="javascript:void(0);">加入班级</a>
                         </span>
                     </div>
-                    <table class="table_submit">
-                        <thead>
-                        <tr>
+                    <!--onclick="scapeToClass1()"-->
+                    <table data-v-4bedaae3 class="table_submit" id="table-my-class" >
+                        <thead data-v-4bedaae3>
+                        <tr data-v-4bedaae3 onclick="window.open('../classDetail/')">
                             <td data-v-4bedaae3 class="t-subject-title">班级名称</td>
                             <td data-v-4bedaae3 class="t-subject-title">简介</td>
                             <td data-v-4bedaae3 class="t-subject-title">负责老师</td>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr data-v-4bedaae3 class="js-nc-wrap-link" onclick="scapeToClass()">
-                            <td class="t-subject-title">12344</td>
-                            <td class="t-subject-title">sdfdasfsd</td>
-                            <td class="t-subject-title">sdfdasfsd</td>
-                        </tr>
-                        </tbody>
                     </table>
                 </div>
             </div>

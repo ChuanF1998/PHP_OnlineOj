@@ -96,30 +96,31 @@ function isImage($filename) {
 }
 
 //生成邀请码
-function createCode($user_id) {
-    static $source_string = 'NE5FCDG3HQA4B1OPIJ2RSTUV67MWX89KLYZ';
-    $num = $user_id;
-    $code = '';
-    while ( $num > 0) {
-        $mod = $num % 35;
-        $num = ($num - $mod) / 35;
-        $code = $source_string[$mod].$code;
+function createCode($userId) {
+    static $sourceString = 'NE5FCDG3HQA4B1OPIJ2RSTUV67MWX89KLYZ';
+    $tmpId = $userId;
+    $invCode = '';
+    while ($tmpId > 0) {
+        $mod = $tmpId % 35;
+        $tmpId = ($tmpId - $mod) / 35;
+        $invCode = $sourceString[$mod].$invCode;
     }
-    if(empty($code[3]))
-        $code = str_pad($code,4,'0',STR_PAD_LEFT);
-    return $code;
+    if(empty($invCode[3]))
+        $invCode = str_pad($invCode,4,'0',STR_PAD_LEFT);
+    return $invCode;
 }
 
 //邀请码解码
-function decode($code) {
-    static $source_string = 'NE5FCDG3HQA4B1OPIJ2RSTUV67MWX89KLYZ';
-    if (strrpos($code, '0') !== false)
-        $code = substr($code, strrpos($code, '0')+1);
-    $len = strlen($code);
-    $code = strrev($code);
-    $num = 0;
-    for ($i=0; $i < $len; $i++) {
-        $num += strpos($source_string, $code[$i]) * pow(35, $i);
+function decode($invCode) {
+    static $sourceString = 'NE5FCDG3HQA4B1OPIJ2RSTUV67MWX89KLYZ';
+    if (strrpos($invCode, '0') !== false) {
+        $invCode = substr($invCode, strrpos($invCode, '0') + 1);
     }
-    return $num;
+    $len = strlen($invCode);
+    $invCode = strrev($invCode);
+    $tmpId = 0;
+    for ($i=0; $i < $len; $i++) {
+        $tmpId += strpos($sourceString, $invCode[$i]) * pow(35, $i);
+    }
+    return $tmpId;
 }

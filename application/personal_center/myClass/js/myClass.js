@@ -52,10 +52,17 @@ function join() {
 }
 
 function scapeToClass(obj) {
-    let i = $(obj).index();
-    console.log(i);
-    console.log(Data[i].className);
-    //window.open("../classDetail/");
+    if (window.localStorage) {
+        let i = $(obj).index();
+        //localStorage.setItem('useId', userInfo['id']);
+        localStorage.setItem('classData', JSON.stringify(Data[i]));
+        console.log(localStorage.getItem('classData'));
+        window.open("../classDetail/");
+    }
+    else {
+        alert("该浏览器不支持，请使用高版本浏览器");
+    }
+
 }
 
 function getMyClass(key) {
@@ -65,7 +72,7 @@ function getMyClass(key) {
         data: key,
         timeout: 5000,
         datatype: 'json',
-        success: function (data) {//如果调用php成功,data为执行php文件后的返回值
+        success: function (data) {
             let resData = eval('('+data+')');
             Data = resData;
             //console.log(resData);
@@ -82,7 +89,7 @@ function getMyClass(key) {
                 s += "</tbody>";
                 $("#table-my-class").append(s);
             }
-            console.log(resData[queCount].status);
+            //console.log(resData[queCount].status);
         },
         error: function () {
             alert("获取失败！");

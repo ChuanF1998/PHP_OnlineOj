@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    //$("#l0").css({"background-color": "#f6f6f6","color": "#25bb9b"});
+    getTeacherId();
+    $("#l0").css({"background-color": "#ffffff","color": "#333333"});
     $("#l1").css({"background-color": "#f6f6f6","color": "#25bb9b"});
     $("#l2").css({"background-color": "#ffffff","color": "#333333"});
     $("#spanA1").show();
@@ -32,14 +33,13 @@ function save() {
     $("#class-table").css("display", "table");
     $("#class-create").css("display", "none");
     let nickname = $('input[name="nickname"]').val();
-    console.log(nickname);
 }
 
 function questionUpload() {
     $("#l2").css({"background-color": "#f6f6f6","color": "#25bb9b"});
-    $(location).attr('href', 'http://localhost:63342/application/teacher_home/question_upload/');
+    $(location).attr('href', '../question_upload/');
 }
 
 function scapeToClass() {
-    window.open('http://localhost:63342/application/teacher_home/myClass/');
+    window.open('../myClass/');
 }

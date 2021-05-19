@@ -17,7 +17,7 @@
         <h3>注册</h3>
         <form action="register_check.php" method="post" class="form_style">
             <div class="box1_space">
-                <input placeholder="请输入电话" name="tel" class="input1_style"/>
+                <input placeholder="请输入电话" name="tel" class="input1_style" id="inputTel"/>
             </div>
             <div class="box1_space">
                 <input placeholder="请输入用户名" name="username" class="input1_style"/>
@@ -58,32 +58,23 @@
         passwd2.onpropertychange = getWord;
     }
     function getWord(){
-        if (passwd2.value != passwd1.value) {
-            // if (passwd1.value.length < 6) {
-            //     document.getElementById("prompt").innerText = "密码至少为6位，至多为12位";
-            //     document.getElementById("prompt").style.visibility="visible";
-            // }
-            // else {
-                //document.getElementById("prompt").innerText = "两次输入密码不一致";
+        if (passwd2.value !== passwd1.value) {
                 document.getElementById("prompt").style.visibility="visible";
-            //}
-
         }
-        if (passwd2.value == passwd1.value) {
-            // if (passwd1.value.length < 6) {
-            //     document.getElementById("prompt").style.visibility="visible";
-            // }
-            // else {
-                //document.getElementById("prompt").Value = "两次输入密码不一致";
+        if (passwd2.value === passwd1.value) {
                 document.getElementById("prompt").style.visibility = "hidden";
-            //}
-
         }
     }
 </script>
 
 <script>
     function Registered() {
+        let Tel = document.getElementById('inputTel').value;
+        let telReg=/^[0-9]{11}$/; //设置手机号正则表达式
+        if(!telReg.test(Tel)){ //验证手机号格式是否正确
+            alert("手机号格式不正确！");
+            return  false;
+        }
         let Pwd_tmp = document.getElementById('pwd1').value;
         let CPwd_tmp = document.getElementById('pwd2').value;
         //判断密码是否符合规则
@@ -93,14 +84,12 @@
             alert("密码须6-15位且至少两种字符组合!");
             return false;
         }
-        else {
-            return true;
-        }
         //判断两次密码是否输入一致
-        if (Pwd_tmp != CPwd_tmp) {
+        if (Pwd_tmp !== CPwd_tmp) {
             alert("两次密码输入不一致!");
             return false;
         }
+        return true;
     }
 </script>
 

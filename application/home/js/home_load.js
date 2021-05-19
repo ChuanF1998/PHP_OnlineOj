@@ -7,7 +7,6 @@ let UserUrl = "http://localhost/PHP_OnlineOj/application/home/php/get_user.php";
 
 //获取题目数据的url
 let DataUrl = "http://localhost/PHP_OnlineOj/application/home/php/home.php";
-//let DataUrl = "http://localhost:63342/application/home/js/home.php";
 
 //获取做题详情
 //let DetailUrl = "http://localhost:63342/application/home/js/GetAnswerDetail.php";

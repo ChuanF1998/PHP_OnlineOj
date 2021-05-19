@@ -1,4 +1,5 @@
-let userInfoUrl = "http://localhost/PHP_OnlineOj/application/common/php/getInformation.php";
+//let userInfoUrl = "http://localhost/PHP_OnlineOj/application/common/php/getInformation.php";
+let userInfoUrl = "../../common/php/getInformation.php";
 let userDataUploadUrl = "http://localhost/PHP_OnlineOj/application/personal_center/myInformation/php/dataUpload.php";
 
 let UserInfo;
@@ -35,7 +36,7 @@ function edit() {
     $("input[name='myNickname']").val(UserInfo['username']);
     $("input[name='mySchool']").val(UserInfo['school']);
     $("input[name='myMajor']").val(UserInfo['major']);
-    $("input[name='myClass']").val(UserInfo['class']);
+    $("input[name='specificClass']").val(UserInfo['class']);
     $("input[name='myGender'][value="+UserInfo['gender']+"]").prop("checked", true);
 }
 
@@ -59,7 +60,7 @@ function save() {
     let myNickname = $("input[name='myNickname']").val();
     let mySchool = $("input[name='mySchool']").val();
     let myMajor = $("input[name='myMajor']").val();
-    let myClass = $("input[name='myClass']").val();
+    let myClass = $("input[name='specificClass']").val();
     let myGender = $("input[name='myGender']:checked").val();
     let myImgFile = $("input[name='myImgFile']")[0].files[0];
     $("input[type='radio'][name='myGender']:checked").prop('checked', false);

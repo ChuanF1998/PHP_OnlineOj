@@ -27,7 +27,7 @@ $Feedback = array(
 //先查询数据库中电话是否已经注册过
 $SqlSentence = "select id,password from student where tel='$Tel'";
 $obj = $MyDatabase->SingleSelect($SqlSentence, 0);
-if ($obj == null) {
+if ($obj === "841") {
     $s = EchoHtml($Feedback,'message1');
     exit($s);
 }
@@ -37,7 +37,7 @@ $MyEncryption = new encryption($Password);
 $EncryPwd = $MyEncryption->GetCipher();
 
 //密码比较
-if ($EncryPwd == $obj['password']) {
+if ($EncryPwd === $obj['password']) {
     $stu_id = $obj['id'];
     $SqlSentence = "update student set is_online='1' where student.id='$stu_id'";
     if($MyDatabase->Updata($SqlSentence)) {
@@ -49,7 +49,6 @@ if ($EncryPwd == $obj['password']) {
         $MyDatabase->Updata($SqlSentence);
         setcookie("user_id", $obj['id'], time() + 604800, '/');
         Header("Location: http://localhost/PHP_OnlineOj/application/home/home.html");
-        //Header("Location: http://localhost:63342/application/home/home.html");
         exit('登录成功');
     }
     else {

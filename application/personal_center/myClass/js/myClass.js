@@ -62,7 +62,6 @@ function scapeToClass(obj) {
     else {
         alert("该浏览器不支持，请使用高版本浏览器");
     }
-
 }
 
 function getMyClass(key) {

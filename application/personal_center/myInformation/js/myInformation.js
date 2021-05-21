@@ -1,6 +1,6 @@
 //let userInfoUrl = "http://localhost/PHP_OnlineOj/application/common/php/getInformation.php";
 let userInfoUrl = "../../common/php/getInformation.php";
-let userDataUploadUrl = "http://localhost/PHP_OnlineOj/application/personal_center/myInformation/php/dataUpload.php";
+let userDataUploadUrl = "/php/dataUpload.php";
 
 let UserInfo;
 

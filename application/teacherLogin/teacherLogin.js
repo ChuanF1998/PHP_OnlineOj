@@ -30,7 +30,7 @@ function login() {
                 alert(resData[0]['msg']);
             }
             if (resData[0]['status'] === "900") {
-                alert(resData[0]['msg']);
+                //alert(resData[0]['msg']);
                 window.location.href = "../teacherHome/teacherInfo/";
             }
         },

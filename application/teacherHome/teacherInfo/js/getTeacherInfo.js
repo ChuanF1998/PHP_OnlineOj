@@ -1,4 +1,5 @@
 let getTeacherInfoUrl = "php/getTeacherInfo.php";
+let updataTeacherInfo = "php/infoUpdata.php";
 let teacherInfo;
 
 $(document).ready(function () {
@@ -38,6 +39,23 @@ function cancel() {
     $("input[type='radio'][name='myGender']:checked").prop('checked', false);
 }
 
+function save() {
+    $("#spanA1").show();
+    $("#spanA2").hide();
+    $("#spanA3").hide();
+    $("#info-show").css("display", "block");
+    $("#info-modify").css("display", "none");
+    let formData = {};
+    formData['myNickname'] = $("input[name='myNickname']").val();
+    formData['myLevel'] = $("input[name='myLevel']").val();
+    formData['mySchool'] = $("input[name='mySchool']").val();
+    formData['myCollege'] = $("input[name='myCollege']").val();
+    formData['myMajor'] = $("input[name='myMajor']").val();
+    formData['myGender'] = $("input[name='myGender']:checked").val();
+    $("input[type='radio'][name='myGender']:checked").prop('checked', false);
+    teacherInfoUpdata(formData);
+}
+
 function getTeacherInfo() {
     return $.ajax({
         type: "post",
@@ -63,6 +81,38 @@ function getTeacherInfo() {
         },
         error: function () {
             alert("获取失败！");
+        }
+    });
+}
+
+//修改用户资料
+function teacherInfoUpdata(formData) {
+    return $.ajax({
+        //async:false,
+        type: "post",
+        url: updataTeacherInfo,
+        data: formData,
+        timeout: 5000,
+        datatype: 'json',
+        beforeSend: function() {
+            $("#info-show").css("display", "none");
+            $("#info-loading").css("display", "flex");
+        },
+        success: function (data) {
+            console.log(data);
+            let resData = eval('('+data+')');
+            if (resData['status'] === "900") {
+                //alert("修改成功");
+            }
+            else {
+                alert("修改失败");
+            }
+            window.location.reload();
+            $("#info-loading").css("display", "none");
+            $("#info-show").css("display", "block");
+        },
+        error: function () {
+            alert("error");
         }
     });
 }

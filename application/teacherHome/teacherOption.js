@@ -2,7 +2,7 @@ let getIdUrl = "../../common/php/getTeacherId.php"; //获取cookie的id值
 let teacherId;
 function getTeacherId() {
     return $.ajax({
-        //async: false,
+        async: false,
         type: "post",
         url: getIdUrl,
         data: "",

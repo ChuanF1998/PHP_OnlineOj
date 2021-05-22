@@ -191,3 +191,9 @@ html body {
 .td-div-green {
     background-color: #25bb9b;
 }
+
+.submit-button button {
+    margin-top: 40px;
+    border: 1px solid #ffffff;
+    border-radius: 10%;
+}

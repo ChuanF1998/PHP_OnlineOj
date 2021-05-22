@@ -1,7 +1,7 @@
 let getIdUrl = "../../common/php/getUserId.php"; //获取cookie的id值
 function getId() {
     return $.ajax({
-        //async: false,
+        async: false,
         type: "post",
         url: getIdUrl,
         data: "",

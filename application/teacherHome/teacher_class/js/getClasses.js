@@ -61,17 +61,12 @@ function save() {
     });
 }
 
-function questionUpload() {
-    $("#l2").css({"background-color": "#f6f6f6","color": "#25bb9b"});
-    $(location).attr('href', '../question_upload/');
-}
-
 function scapeToClass(obj) {
     if (window.localStorage) {
         let i = $(obj).index();
-        localStorage.setItem('classData', JSON.stringify(classDetail[i]));
-        console.log(localStorage.getItem('teacherClassData'));
-        window.open('../myClass/');
+        localStorage.setItem('specificClassData', JSON.stringify(classDetail[classDetail.length - i - 1]));
+        console.log(localStorage.getItem('specificClassData'));
+        window.open('../specificClass/');
     }
     else {
         alert("该浏览器不支持，请使用高版本浏览器");

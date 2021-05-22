@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>我的班级</title>
-    <!--<link rel="stylesheet" type="text/css" href="index.css">-->
     <link rel="stylesheet" type="text/css" href="../../common/css/common.css">
     <link rel="stylesheet" type="text/css" href="../../common/css/class.css">
     <style>
@@ -23,33 +22,29 @@
         <div class="div1">
             欢迎使用在线代码测验平台
         </div>
-        <!--        <div class="div1">
-                    <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
-                    <button class="search_button" type="button">搜索</button>
-                </div>-->
+        <div class="div1">
+        </div>
         <div class="div1">
             <div >
-                <!--            <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>-->
-                <!--            &lt;!&ndash;<img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/default.png" class="user0_img" alt=""/>&ndash;&gt;-->
-                <img id="user_img0" src="http://localhost:63342/application/src/icon/default.png" class="user0_img" alt=""/>
+                <img id="user_img0" src="../../src/icon/default.png" class="user0_img" alt=""/>
             </div>
         </div>
     </div>
     <div class="banner">
         <div class="course-info">
             <div class="course-img">
-                <img src="http://localhost:63342/application/src/icon/course.png" alt/>
+                <img src="../../src/icon/course.png" alt/>
             </div>
             <div class="course-name">
-                <span class="name">C语言</span>
+                <span class="name" id="className"></span>
             </div>
+            <div class="submit-button" onclick="questionUpload()"><button>发布试题</button></div>
             <div class="teacher">
-                <div class="teacher-title">
+<!--                <div class="teacher-title">
                     负责人
                 </div>
-                <div class="teacher-name">
-                    贾克斯 老师
-                </div>
+                <div class="teacher-name" id="classTeacher">
+                </div>-->
             </div>
         </div>
         <div class="menu-bar">
@@ -74,21 +69,14 @@
         </div>
 
         <div>
-            <table class="table-style">
-                <tr onclick="scapeToQuestion()">
-                    <td class="td1"><span>dsaf</span></td>
-                    <td><div class="td-div"></div></td>
-                </tr>
-                <tr>
-                    <td class="td1"><span>dsaf</span></td>
-                    <td><div class="td-div"></div></td>
-                </tr>
+            <table class="table-style" id="question-table">
             </table>
         </div>
     </div>
 </div>
 
 <script type="text/javascript" src="../../jquery/jquery-3.5.1/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/getTeacherClass.js"></script>
+<script type="text/javascript" src="../teacherOption.js"></script>
+<script type="text/javascript" src="js/getSpecificClass.js"></script>
 </body>
 </html>

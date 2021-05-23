@@ -1,6 +1,6 @@
 //let userInfoUrl = "http://localhost/PHP_OnlineOj/application/common/php/getInformation.php";
 let userInfoUrl = "../../common/php/getInformation.php";
-let userDataUploadUrl = "/php/dataUpload.php";
+let userDataUploadUrl = "php/dataUpload.php";
 
 let UserInfo;
 
@@ -36,7 +36,7 @@ function edit() {
     $("input[name='myNickname']").val(UserInfo['username']);
     $("input[name='mySchool']").val(UserInfo['school']);
     $("input[name='myMajor']").val(UserInfo['major']);
-    $("input[name='specificClass']").val(UserInfo['class']);
+    $("input[name='myClass']").val(UserInfo['class']);
     $("input[name='myGender'][value="+UserInfo['gender']+"]").prop("checked", true);
 }
 
@@ -60,7 +60,8 @@ function save() {
     let myNickname = $("input[name='myNickname']").val();
     let mySchool = $("input[name='mySchool']").val();
     let myMajor = $("input[name='myMajor']").val();
-    let myClass = $("input[name='specificClass']").val();
+    let myClass = $("input[name='myClass']").val();
+    console.log(myClass);
     let myGender = $("input[name='myGender']:checked").val();
     let myImgFile = $("input[name='myImgFile']")[0].files[0];
     $("input[type='radio'][name='myGender']:checked").prop('checked', false);
@@ -72,7 +73,6 @@ function save() {
     formData.append('myGender', myGender);
     formData.append('myImgFile', myImgFile);
     formData.append('myTel', UserInfo['tel']);
-
     $.ajax({
         async:false,
         type: "post",
@@ -88,6 +88,7 @@ function save() {
         processData:false,
         contentType:false,
         success: function (data) {
+            alert("修改成功");
             window.location.reload();
             $("#info-loading").css("display", "none");
             $("#info-show").css("display", "block");
@@ -105,7 +106,7 @@ function getUserData() {
         data: "",
         timeout: 5000,
         datatype: 'json',
-        success: function (data) {//如果调用php成功,data为执行php文件后的返回值
+        success: function (data) {
             UserInfo = eval('('+data+')');
             if (UserInfo['status'] === "900"){
                 //UserInfo = eval('('+data+')');
@@ -113,16 +114,16 @@ function getUserData() {
                     $("#user_img0").attr("src", UserInfo['img_path']);
                     $(".portrait").css({"background": "url("+UserInfo['img_path']+")", "background-size":"26px 26px"});
                 }
-                $("#nickname").text(UserInfo['username']);
+                $("#nickname").append(UserInfo['username']);
                 if (UserInfo['gender'] === '0') {
                     $("#gender").attr("class", "female");
                 }
                 if (UserInfo['gender'] === '1') {
                     $("#gender").attr("class", "male");
                 }
-                $("#school").text(UserInfo['school']);
-                $("#major").text(UserInfo['major']);
-                $("#class").text(UserInfo['class']);
+                $("#school").append(UserInfo['school']);
+                $("#major").append(UserInfo['major']);
+                $("#class").append(UserInfo['class']);
             }
         },
         error: function () {

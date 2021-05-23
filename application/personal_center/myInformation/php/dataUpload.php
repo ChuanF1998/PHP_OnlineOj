@@ -7,7 +7,7 @@ if (!isset($_COOKIE["user_id"])) {
     exit(json_encode($res));
 }
 
-if (!isset($_POST['myNickname'], $_POST['mySchool'], $_POST['myMajor'], $_POST['specificClass'], $_POST['myGender'], $_POST['myTel'])) {
+if (!isset($_POST['myNickname'], $_POST['mySchool'], $_POST['myMajor'], $_POST['myClass'], $_POST['myGender'], $_POST['myTel'])) {
     $res = array('status' => '820');
     exit(json_encode($res));
 }
@@ -67,7 +67,7 @@ $Table = "student";
 $myNickname = $_POST['myNickname'];
 $mySchool = $_POST['mySchool'];
 $myMajor = $_POST['myMajor'];
-$myClass = $_POST['specificClass'];
+$myClass = $_POST['myClass'];
 $myGender = $_POST['myGender'];
 
 $SqlSentence = "update $Table 

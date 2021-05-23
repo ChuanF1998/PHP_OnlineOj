@@ -38,6 +38,8 @@ function scapeToQuestion(obj) {
         let i = $(obj).index();
         localStorage.setItem('question', JSON.stringify(classQuestion[classQuestion.length - i - 1]));
         localStorage.setItem('className', classData['className']);
+        console.log(classData);
+        localStorage.setItem('classId', classData['classId']);
         console.log(localStorage.getItem('question'));
         window.open("../answer_detail/");
     }

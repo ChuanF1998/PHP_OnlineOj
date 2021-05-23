@@ -21,5 +21,8 @@ from titles
 where is_use=true and types='$Type' and species='$Class'";
 }
 $obj = $MyDatabase->MultitermSelect($SqlSentence, 0);
+if ($obj === "841") {
+    exit("841");
+}
 
 echo json_encode($obj);

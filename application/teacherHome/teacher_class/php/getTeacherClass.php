@@ -22,6 +22,11 @@ if ($obj === "841") {
     exit(json_encode($res));
 }
 
+//生成邀请码
+for ($i = 0; $i < count($obj); ++$i) {
+    $obj[$i]['invCode'] = createCode($obj[$i]['classId']);
+}
+
 $table2 = "classstudent";
 $sqlSentence = "select classId,count(*) as numbers from $table2 group by classId having classId in(
 select classId from $table where teacherId='$teacherId' and isUse='1')";

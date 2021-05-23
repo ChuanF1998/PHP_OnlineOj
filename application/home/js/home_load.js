@@ -59,11 +59,10 @@ function GetData_Ajax(data_url, key) {
             data: key,
             timeout: 5000,
             datatype: 'json',
-            success: function (data) {//如果调用php成功,data为执行php文件后的返回值
+            success: function (data) {
                 //console.log(data);
-                if (data !== "null") {
+                if (data !== "null" && data !== "841") {
                     let j_data = eval('(' + data + ')');
-                    //console.log(j_data);
                     QuestionData = j_data;
                     QueCount = j_data.length;
                     let s = "";

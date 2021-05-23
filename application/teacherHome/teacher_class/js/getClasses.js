@@ -95,12 +95,14 @@ function getTeacherClassData(form) {
                 for (let i = 0; i < classPeopleNumber.length; ++i) {
                     classHash[classPeopleNumber[i].classId].numbers = classPeopleNumber[i].numbers;
                 }
+                console.log(classDetail);
                 let s = "<tbody data-v-4bedaae3>";
                 for (let i = classDetail.length - 1; i >= 0 ; --i){
                     s += "<tr data-v-4bedaae3 class=\"js-nc-wrap-link\" onclick=\"scapeToClass(this)\">"
                         + "<td data-v-4bedaae3 class=\"t-subject-title\">" + classDetail[i].className + "</td>"
                         + "<td data-v-4bedaae3 class=\"t-subject-title\">" + classDetail[i].classDescribe + "</td>"
                     + " <td data-v-4bedaae3 class=\"t-subject-title\">" + classDetail[i].numbers + "</td>"
+                        + " <td data-v-4bedaae3 class=\"t-subject-title\">" + classDetail[i].invCode + "</td>"
                         +"</tr>";
                 }
                 s += "/tbody>";

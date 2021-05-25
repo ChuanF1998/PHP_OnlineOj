@@ -1,0 +1,123 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.first-box {
+    float: left;
+    padding:0;
+    margin-top: 50px;
+    height: auto;
+    background: #FFFFFF;
+}
+
+.left-box {
+    display: block;
+    height: auto;
+    width: 49.5%;
+}
+
+.middle-box {
+    position:  absolute;
+    top: 0;
+    left: 49.5%;
+    width: 1%;
+    background: #DCDCDC;
+}
+
+.right-box {
+    position: absolute;
+    left: 50.5%;
+    display: block;
+    height: auto;
+    width: 49.5%;
+}
+
+.condition-limit {
+    position: relative;
+    width: 90%;
+    height: auto;
+    margin-left: 20px;
+    top: 20px;
+    background: #DCDCDC;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.condition-limit div {
+    padding:15px;
+}
+
+.question-describe {
+    position: absolute;
+    width: 45%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 40px;
+}
+
+.describe-box {
+    font-size: 15px;
+    color: #666666;
+    line-height: 2em;
+}
+
+.menu-box {
+    position: relative;
+    width: 92%;
+    height: auto;
+    margin-left: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.all-screen {
+    float: right;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url("../../src/icon/allScreen.jpg")no-repeat;
+    background-size: 25px 25px;
+}
+
+.code-box {
+    position: absolute;
+    width: 92%;
+    height: auto;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.code-box textarea {
+    border: 1px solid #DCDCDC;
+    background-color: #F5F5F5;
+    font-size: 15px;
+    font-family: Arial;
+    resize: none;
+}
+
+.submit-box {
+    float: right;
+    width: 100px;
+    height: 30px;
+}
+
+.submit-box button {
+    width: 100px;
+    height: 30px;
+    background-color: #25bb9b;
+    color: #FFFFFF;
+    border: 1px solid #25bb9b;
+}
+
+.error-box{
+    margin-top: 20px;
+    width: 90%;
+    border: 1px solid #DCDCDC;
+    background-color: #F5F5F5;
+    font-size: 15px;
+    font-family: Arial;
+    resize: none;
+    color: red;
+
+}

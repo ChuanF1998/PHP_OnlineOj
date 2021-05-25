@@ -66,7 +66,7 @@ function GetData_Ajax(data_url, key) {
                     QuestionData = j_data;
                     QueCount = j_data.length;
                     let s = "";
-                    for (let i = 0; i < j_data.length; ++i) {
+                    for (let i = j_data.length - 1; i >= 0; --i) {
                         let pass_rate = 0;
                         if (j_data[i].submit_times === "0") {
                             pass_rate = "0.0";
@@ -78,7 +78,7 @@ function GetData_Ajax(data_url, key) {
                                 pass_rate = tmp.toFixed(1);
                             }
                         }
-                        s = "<tr class=\"title\"  onclick=\"que_detail()\"> " +
+                        s = "<tr class=\"title\"  onclick=\"que_detail(this)\"> " +
                             "<td class=\"td0\" ><div class=\"td_div0\"></div></td> " +
                             "<td class=\"td1\" >" + j_data[i].id + "</td> " +
                             "<td class=\"td1\" >" + j_data[i].name + "</td> " +
@@ -146,7 +146,7 @@ function GetAnswerDetail(DetailUrl, key) {
             }
         },
         error: function () {
-
+            alert("error");
         }
     })
 }

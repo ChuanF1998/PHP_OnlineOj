@@ -103,6 +103,19 @@ function c_other() {
 /*
 点击单个题目
  */
-function que_detail() {
-
+function que_detail(obj) {
+    if (UserId === null) {
+        window.open("../login/h_login.html");
+    }
+    if (window.localStorage) {
+        let i = $(obj).index();
+        localStorage.setItem('question', JSON.stringify(QuestionData[QuestionData.length - i]));
+        localStorage.setItem('userId', UserId);
+        localStorage.setItem('tel', User['tel']);
+        console.log(localStorage.getItem('tel'));
+        window.open("../practice/");
+    }
+    else {
+        alert("该浏览器不支持，请使用高版本浏览器");
+    }
 }

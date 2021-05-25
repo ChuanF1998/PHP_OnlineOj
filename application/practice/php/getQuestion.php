@@ -1,17 +1,18 @@
 <?php
 header("X-Content-Type-Options: nosniff");
 
-if (!isset($_POST["questionId"])) {
+if (!isset($_POST["questionId"], $_POST['filedir'])) {
     $res[] = array('status' => '860');
     exit(json_encode($res));
 }
-$questionId = $_POST['questionId'];
+$uploaderId = $_POST['uploaderId'];
+$filedir = $_POST['filedir'];
 //$questionId = 5;
 
 include("../../common/php/com_func.php");
 
 //匹配文件是否存在
-$path = "../../src/questions/programing/".$questionId;
+$path = "../../src/questions/programing/".$uploaderId."/".$filedir;
 $file = PregMatchFile($path, "/^describe/");
 if ($file === null) {
     $res[] = array('status'=>'861');

@@ -38,5 +38,5 @@ function classManage() {
 
 function questionUpload() {
     $("#l2").css({"background-color": "#f6f6f6","color": "#25bb9b"});
-    $(location).attr('href', '../question_upload/');
+    $(location).attr('href', '../myUpload/');
 }

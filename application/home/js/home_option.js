@@ -35,7 +35,7 @@ function choice_que() {
 function programing_que() {
     $("#question_table tr:not(:first)").remove();
     QuestionType = 'B';
-    document.getElementById("a1").style.color = "#808080";
+    //document.getElementById("a1").style.color = "#808080";
     document.getElementById("a2").style.color = "#48D1CC";
     Key['QuestionType'] = QuestionType;
     Key['QuestionClass'] = QuestionClass;
@@ -104,6 +104,7 @@ function c_other() {
 点击单个题目
  */
 function que_detail(obj) {
+    console.log(UserId);
     if (UserId === null) {
         window.open("../login/h_login.html");
     }

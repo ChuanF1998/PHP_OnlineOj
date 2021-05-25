@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>试题管理</title>
+    <link rel="stylesheet" type="text/css" href="../../common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../common/css/general.css">
+    <style>
+    </style>
+</head>
+
+<body>
+<div class="page">
+    <div class="navigation">
+        <div class="div1">
+            欢迎使用在线代码测验平台
+        </div>
+        <div class="div1">
+        </div>
+        <div class="div1">
+        </div>
+    </div>
+
+    <div class="profile_menu">
+        <!--侧边导航栏200px-->
+        <div class="nk" id="classes">
+            <a id="l0" class="li_a2" type="button" onclick="infoOption()">基本资料</a>
+            <a id="l1" class="li_a2" type="button" onclick="classManage()">班级管理</a>
+            <a id="l2" class="li_a2" type="button" onclick="questionUpload()">试题上传</a>
+        </div>
+
+        <!--信息显示栏780px-->
+        <div class="nk-content">
+            <div class="module-box">
+                <div class="module-body">
+                    <div class="filter-bar">
+                        <p class="filter-title">上传记录</p>
+                        <span class="ctr-btn-box">
+                                <a class="js-action-btn btn btn-info-edit btn-primary" id="spanA1" onclick="upload()" href="javascript:void(0);">试题上传</a>
+                                <a class="js-action-btn btn btn-default btn-info-cancel" id="spanA2" onclick="cancel()" href="javascript:void(0);">取消</a>
+                                <a class="js-action-btn btn btn-primary btn-info-save" id="spanA3" onclick="save()" href="javascript:void(0);">上传</a>
+                        </span>
+                    </div>
+                    <table data-v-4bedaae3 class="table_submit" id="question-table">
+                        <thead data-v-4bedaae3>
+                        <tr data-v-4bedaae3>
+                            <td data-v-4bedaae3 class="t-subject-title">题号</td>
+                            <td data-v-4bedaae3 class="t-subject-title">题目</td>
+                            <td data-v-4bedaae3 class="t-subject-title">上传时间</td>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <div class="js-module-info info-box set-msg-box" id="question-upload">
+                        <dl>
+                            <dt>题目名称</dt>
+                            <dd class="control-group"><label><input name="questionName" type="text"/></label></dd>
+                        </dl>
+                        <dl>
+                            <dt>试题难度</dt>
+                            <dd>
+                                <label for="simple">简单</label><input type="radio" name="level" id="simple" value="简单"/>
+                                <label for="middle">中等</label><input type="radio" name="level" id="middle" value="0"/>
+                                <label for="difficult">困难</label><input type="radio" name="level" id="difficult" value="0"/>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>试题分类</dt>
+                            <dd>
+                                <label for="algorithm">算法</label><input type="radio" name="species" id="algorithm" value="A"/>
+                                <label for="structure">数据结构</label><input type="radio" name="species" id="structure" value="B"/>
+                                <label for="network">网络</label><input type="radio" name="species" id="network" value="C"/>
+                                <label for="other">其他</label><input type="radio" name="species" id="other" value="D"/>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>题目描述</dt>
+                            <dd>
+                                <label><input type="file" name="describe"/></label>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>头文件模块</dt>
+                            <dd>
+                                <label><input type="file" name="head"/></label>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>功能编写模块</dt>
+                            <dd>
+                                <label><input type="file" name="function"/></label>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>主函数模块</dt>
+                            <dd>
+                                <label><input type="file" name="main"/></label>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../jquery/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="../teacherOption.js"></script>
+<script type="text/javascript" src="js/questionUpload.js"></script>
+</body>
+</html>

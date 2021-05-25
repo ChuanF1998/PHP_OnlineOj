@@ -14,7 +14,10 @@ $(document).ready(function () {
     $("input[name='language'][value='C++']").prop("checked", true);
     let type = $("input[name='language']:checked").val();
     form['questionId'] = question['id'];
+    form['filedir'] = question['filedir'];
+    form['uploaderId'] = question['uploader'];
     form['language'] = type;
+    //console.log(form);
     getQuestion(form);
 })
 
@@ -33,12 +36,19 @@ function a() {
 }
 
 function submit() {
+    let language = $("input[name='language']:checked").val();
     let s = $("#textarea-box").val();
     let form = {};
     form['functionCode'] = s;
     form['userId'] = userId;
-    form['tel'] = tel;
+    form['filedir'] = question['filedir'];
     form['questionId'] = question['id'];
+    form['uploaderId'] = question['uploader'];
+    form['tel'] = tel;
+    form['questionName'] = question['name'];
+    form['types'] = question['types'];
+    form['species'] = question['species'];
+    form['language'] = language;
     console.log(form);
     submitCode(form);
 }
@@ -52,6 +62,7 @@ function getQuestion(form) {
         datatype: 'json',
         success: function (data) {
             let resData = eval('('+data+')');
+            //console.log(resData);
             if (resData['status'] === "900") {
                 $("#title-content").text(resData['head']);
                 $("#textarea-box").text(resData['function']);
@@ -84,3 +95,8 @@ function submitCode(form) {
         }
     });
 }
+
+$("input[name=language]").click(function(){
+    let language = $(this).val();
+    console.log(language);
+});

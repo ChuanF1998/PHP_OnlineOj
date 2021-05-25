@@ -61,7 +61,6 @@ function save() {
     let mySchool = $("input[name='mySchool']").val();
     let myMajor = $("input[name='myMajor']").val();
     let myClass = $("input[name='myClass']").val();
-    console.log(myClass);
     let myGender = $("input[name='myGender']:checked").val();
     let myImgFile = $("input[name='myImgFile']")[0].files[0];
     $("input[type='radio'][name='myGender']:checked").prop('checked', false);

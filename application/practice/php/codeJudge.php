@@ -13,7 +13,7 @@ if (!isset($_POST["tel"])) {
 }
 $tel = $_POST['tel'];
 
-if (!isset($_POST["tel"])) {
+if (!isset($_POST["questionId"])) {
     $res[] = array('status' => '860');
     exit(json_encode($res));
 }
@@ -26,23 +26,34 @@ if (!isset($_POST["functionCode"])) {
 }
 $functionCode = $_POST['functionCode'];
 
+if (!isset($_POST["uploaderId"], $_POST['filedir'],$_POST['questionName'], $_POST['types'], $_POST['species'], $_POST['language'])) {
+    $res[] = array('status' => '862');
+    exit(json_encode($res));
+}
+$uploaderId = $_POST['uploaderId'];
+$filedir = $_POST['filedir'];
+$questionName = $_POST['questionName'];
+$types = $_POST['types'];
+$species = $_POST['species'];
+$language = $_POST['language'];
+
 //创建一个保存用户代码的文件夹
 $userCodePath = "../../src/users/".$tel."/code";
 if (!file_exists($userCodePath)) {
     if(!CreateFolder($userCodePath)) {
-        $res[] = array('status' => '865', 'ss'=>$userCodePath);
+        $res[] = array('status' => '865');
         exit(json_encode($res));
     }
 }
 
 //查找主函数文件是否存在
-$questionPath = "../../src/questions/programing/".$questionId."/main.txt";
+$questionPath = "../../src/questions/programing/".$uploaderId."/".$filedir."/main.txt";
 if (!file_exists($questionPath)) {
-    $res[] = array('status' => '861');
+    $res[] = array('status' => '861',"up"=>$uploaderId,'fi'=>$filedir);
     exit(json_encode($res));
 }
 $mainCode = (new file_read($questionPath))->Read();
-$questionPath = "../../src/questions/programing/".$questionId."/head.txt";
+$questionPath = "../../src/questions/programing/".$uploaderId."/".$filedir."/head.txt";
 if (!file_exists($questionPath)) {
     $res[] = array('status' => '861');
     exit(json_encode($res));
@@ -60,10 +71,16 @@ if(!fwrite ($codeFile, $code)) {
 }
 fclose($codeFile);
 
+$myDatabase = new connect("online_oj");
+
 //编译
 $command = "g++ $codeFileName -o $timeSecond";
 $compileRet = shell_exec($command);
-if ($command !== null) {
+if ($compileRet !== null) {
+    $sql = "insert into answer_details(user_id,question_id,questionName,types,species,state,prog_language,is_pass)
+values('$userId','$questionId','$questionName','$types','$species','编译失败','$language','0')";
+    $myDatabase->Insert($sql);
+
     $res[] = array('status' => '870', 'msg'=>'编译失败', 'info'=>$compileRet);
     exit(json_encode($res));
 }

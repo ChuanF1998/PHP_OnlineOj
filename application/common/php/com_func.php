@@ -43,7 +43,7 @@ function CreateFolder($file_path = "")
     /*iconv方法是为了防止中文乱码，保证可以创建识别中文目录，不用iconv方法格式的话，将无法创建中文目录*/
     $dir = iconv("UTF-8", "GBK",$file_path);
     if (!file_exists($dir)) {
-        if (mkdir($dir)) {
+        if (mkdir($dir, 0777, true)) {
             return true;
         }
         return false;

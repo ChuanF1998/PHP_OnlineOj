@@ -16,7 +16,7 @@ let Key = {};
 * A---选择
 * B---编程
 * */
-let QuestionType = 'A';
+let QuestionType = 'B';
 /*
 * Z---全部
 * A---算法
@@ -28,14 +28,14 @@ let QuestionClass = 'Z';
 
 let QuestionData;  //题目
 let User;        //用户信息
-let UserId;       //用户id
+let UserId = null;       //用户id
 let AnswerDetails;   //用户解题详情
 let QueCount = 0; //题目数量
 
 //页面初始化
 $(document).ready(function () {
     //选择按钮的样式初始化
-    $("#a1").css("color", "#48D1CC");
+    //$("#a1").css("color", "#48D1CC");
     $("#l0").css("color", "#48D1CC");
     //左侧题目分类布局初始化
     let PageWidth = document.documentElement.clientWidth;

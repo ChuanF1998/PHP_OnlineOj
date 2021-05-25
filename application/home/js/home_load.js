@@ -2,15 +2,13 @@
 此js文件加载页面所需数据
 */
 //获取用户资料的url
-let UserUrl = "http://localhost/PHP_OnlineOj/application/home/php/get_user.php";
-//let UserUrl = "http://localhost:63342/application/home/js/get_user.php";
+let UserUrl = "php/get_user.php";
 
 //获取题目数据的url
-let DataUrl = "http://localhost/PHP_OnlineOj/application/home/php/home.php";
+let DataUrl = "php/home.php";
 
 //获取做题详情
-//let DetailUrl = "http://localhost:63342/application/home/js/GetAnswerDetail.php";
-let DetailUrl = "http://localhost/PHP_OnlineOj/application/home/php/GetAnswerDetail.php";
+let DetailUrl = "php/GetAnswerDetail.php";
 
 //当前页面的选择情况
 let Key = {};

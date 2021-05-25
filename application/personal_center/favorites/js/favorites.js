@@ -1,4 +1,4 @@
-let getMyCollectionUrl = "http://localhost/PHP_OnlineOj/application/personal_center/favorites/php/getMyCollection.php";
+let getMyCollectionUrl = "php/getMyCollection.php";
 let form = {};
 $(document).ready(function () {
     getId();

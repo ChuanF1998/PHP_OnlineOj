@@ -20,7 +20,7 @@ where studentId='$userId' and classId='$classId' and isPass='1'";
 
 $obj = $myDatabase->MultitermSelect($sqlSentence, 0);
 if ($obj === null) {
-    $res = array('status' => '840');
+    $res[] = array('status' => '840');
     exit(json_encode($res));
 }
 

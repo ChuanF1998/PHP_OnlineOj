@@ -1,4 +1,4 @@
-let getTestsUrl = "http://localhost/PHP_OnlineOj/application/personal_center/tests/php/getTests.php";
+let getTestsUrl = "php/getTests.php";
 let data = {};
 
 $(document).ready(function () {

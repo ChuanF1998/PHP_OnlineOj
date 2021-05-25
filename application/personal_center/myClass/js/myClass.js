@@ -1,5 +1,5 @@
-let getMyclassUrl = "http://localhost/PHP_OnlineOj/application/personal_center/myClass/php/getMyClass.php";
-let joinClassUrl = "http://localhost/PHP_OnlineOj/application/personal_center/myClass/php/joinClass.php";
+let getMyclassUrl = "php/getMyClass.php";
+let joinClassUrl = "php/joinClass.php";
 let form = {};
 let Data;
 $(document).ready(function () {

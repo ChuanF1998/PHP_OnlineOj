@@ -1,7 +1,7 @@
-let getIdUrl = "http://localhost/PHP_OnlineOj/application/common/php/getUserId.php";
-let getClassQuestionUrl = "http://localhost/PHP_OnlineOj/application/personal_center/classDetail/php/getClassDetail.php";
-let completeQuestionUrl = "http://localhost/PHP_OnlineOj/application/personal_center/classDetail/php/getCompleteQuestion.php";
-let notPassQuestionUrl = "http://localhost/PHP_OnlineOj/application/personal_center/classDetail/php/notPassQuestion.php";
+let getIdUrl = "../../common/php/getUserId.php";
+let getClassQuestionUrl = "php/getClassDetail.php";
+let completeQuestionUrl = "php/getCompleteQuestion.php";
+let notPassQuestionUrl = "php/notPassQuestion.php";
 let useId;
 let classData;  //班级相关数据
 let classQuestion; //班级题目
@@ -30,6 +30,9 @@ $(document).ready(function () {
                 form['userId'] = useId;
                 form['classId'] = classData['classId'];
                 $.when(getClassQuestion(form),  completeQuestion(form),notPass(form)).done(function () {
+                    classQuestion.pop();
+                    notPassQuestion.pop();
+                    completeQueData.pop();
                     for(let i = 0; i < classQuestion.length; ++i) {
                         classQuestion[i].isPass = "null";
                         allQuestionData[classQuestion[i].classQuestionId] = classQuestion[i];
@@ -129,9 +132,9 @@ function getClassQuestion(form) {
             //console.log(data);
             classQuestion = eval('('+data+')');
             let queCount = classQuestion.length - 1;
-            //console.log(classQuestion);
+            console.log(classQuestion);
             if (classQuestion[queCount].status === "900") {
-                classQuestion.pop();
+
             }
             //console.log(classQuestion[queCount].status);
         },
@@ -153,7 +156,7 @@ function completeQuestion(form) {
         success: function (data) {
             //console.log(data);
             completeQueData = eval('('+data+')');
-            completeQueData.pop();
+
             //console.log(completeQueData);
         },
         error: function () {
@@ -173,7 +176,7 @@ function notPass(form) {
         success: function (data) {
             //console.log(data);
             notPassQuestion = eval('('+data+')');
-            notPassQuestion.pop();
+
             //console.log(notPassQuestion);
         },
         error: function () {

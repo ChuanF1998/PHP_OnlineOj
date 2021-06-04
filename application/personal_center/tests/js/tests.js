@@ -9,17 +9,17 @@ $(document).ready(function () {
     $("#l1").css({"background-color": "#f6f6f6","color": "#25bb9b"});
     $("#l2").css({"background-color": "#ffffff","color": "#333333"});
     $("#l3").css({"background-color": "#ffffff","color": "#333333"});
-    $("#button1").css("background", "#25bb9b").attr("onclick", "");
-    $("#button2").css("background", "#bbb").attr("onclick", "");
-    $("#tab-choice").css("display", "table");
-    $("#tab-programing").css("display", "none");
+    //$("#button1").css("background", "#25bb9b").attr("onclick", "");
+    $("#button2").css("background", "#25bb9b").attr("onclick", "");
+    $("#tab-choice").css("display", "none");
+    $("#tab-programing").css("display", "table");
     $.when(getUserData()).done(function () {
-        $("#button1").attr("onclick", "choice()");
+        //$("#button1").attr("onclick", "choice()");
         $("#button2").attr("onclick", "programing()");
         //console.log(userInfo);
         data['userId'] = userInfo['id'];
-        data['type'] = 'A';
-        getTests(data, "#button1", "choice()");
+        data['type'] = 'B';
+getTests(data, "#button2", "programing()");
     });
 })
 
@@ -96,7 +96,7 @@ function choice() {
 
 function programing() {
     $("#tab-programing tr:not(:first)").remove();
-    $("#button1").css("background", "#bbb");
+    //$("#button1").css("background", "#bbb");
     $("#button2").css("background", "#25bb9b");
     $("#tab-choice").css("display", "none");
     $("#tab-programing").css("display", "table");

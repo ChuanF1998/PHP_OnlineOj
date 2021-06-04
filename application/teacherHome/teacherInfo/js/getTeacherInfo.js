@@ -66,17 +66,17 @@ function getTeacherInfo() {
         success: function (data) {
             teacherInfo = eval('('+data+')');
             if (teacherInfo['status'] === "900"){
-                $("#nickname").text(teacherInfo['userName']);
+                $("#nickname").append(teacherInfo['userName']);
                 if (teacherInfo['gender'] === '0') {
                     $("#gender").attr("class", "female");
                 }
                 if (teacherInfo['gender'] === '1') {
                     $("#gender").attr("class", "male");
                 }
-                $("#level").text(teacherInfo['level']);
-                $("#school").text(teacherInfo['school']);
-                $("#college").text(teacherInfo['college']);
-                $("#major").text(teacherInfo['major']);
+                $("#level").append(teacherInfo['level']);
+                $("#school").append(teacherInfo['school']);
+                $("#college").append(teacherInfo['college']);
+                $("#major").append(teacherInfo['major']);
             }
         },
         error: function () {

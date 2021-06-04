@@ -1,4 +1,4 @@
-let userInfoUrl = "http://localhost/PHP_OnlineOj/application/common/php/getInformation.php";
+let userInfoUrl = "../../common/php/getInformation.php";
 let userInfo;
 
 function getUserData() {

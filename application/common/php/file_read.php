@@ -9,6 +9,9 @@ class file_read {
         $this->handle = fopen($filename, "r");
     }
     public function Read() {
+        if (filesize($this->fileName) === 0) {
+            return null;
+        }
         do{
             usleep(100);
         }while (!flock($this->handle, LOCK_EX));  //LOCK_EX 取得独占锁定（写入的程序）进行排它型锁定 获取锁　有锁就写入，没锁就得

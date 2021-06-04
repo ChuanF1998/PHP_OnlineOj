@@ -21,13 +21,13 @@ where classId='$classId' and isUse='1'";
 
 $obj = $myDatabase->MultitermSelect($sqlSentence, 0);
 if ($obj === null) {
-    $res = array('status' => '840');
+    $res[] = array('status' => '840');
     exit(json_encode($res));
 }
 
 //未查询到数据，但查询成功
 if ($obj === "841") {
-    $res = array('status' => '841');
+    $res[] = array('status' => '841');
     exit(json_encode($res));
 }
 

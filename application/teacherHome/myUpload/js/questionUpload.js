@@ -108,10 +108,11 @@ function getHaveUploadData(form) {
         datatype: 'json',
         success: function (data) {
             questionData = eval('('+data+')');
+            console.log(questionData);
             let resCount = questionData.length;
             if (questionData[resCount - 1]['status'] === "900") {
                 questionData.pop();
-                //console.log(questionData);
+                console.log(questionData);
                 let s = "<tbody data-v-4bedaae3>";
                 let date;
                 for (let i = resCount - 2; i >= 0; --i) {

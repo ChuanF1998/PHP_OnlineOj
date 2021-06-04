@@ -82,6 +82,7 @@ function getTeacherClassData(form) {
         datatype: 'json',
         success: function (data) {
             classDetail = eval('('+data+')');
+            console.log(classDetail);
             let resCount = classDetail.length;
             if (classDetail[resCount - 1]['status'] === "900") {
                 classDetail.pop();

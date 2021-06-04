@@ -5,12 +5,33 @@ class connect
     //private $Table;
     private $SqlConnect;
     public function __construct($Table = '') {
-        $this->SqlConnect = mysqli_connect("localhost", "root", "", "$Table");
+        $this->SqlConnect = mysqli_connect("localhost", "root", "123456", "$Table");
         if (!$this->SqlConnect) {
             die("数据库连接失败".mysqli_error($this->SqlConnect));
         }
         mysqli_query($this->SqlConnect,"set names utf8");
     }
+
+    private function Mysqli_fetch_all($result, $way) {
+        $posts = array();
+        if ($way === 0) {
+            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                $posts[] = $row;
+            }
+        }
+        if ($way === 1) {
+            while($row = mysqli_fetch_array($result, MYSQLI_NUM)) {
+                $posts[] = $row;
+            }
+        }
+        if ($way === 2) {
+            while($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+                $posts[] = $row;
+            }
+        }
+        return $posts;
+    }
+
     //获取一个数据库连接句柄
     public function GetSqlConnect() {
         return $this->SqlConnect;
@@ -60,14 +81,17 @@ class connect
         if (mysqli_num_rows($obj) < 1) {
             return "841";
         }
-        if ($way == 0) {
-            return mysqli_fetch_all($obj, MYSQLI_ASSOC);
+        if ($way === 0) {
+            //return mysqli_fetch_all($obj, MYSQLI_ASSOC);
+            return $this->Mysqli_fetch_all($obj, 0);
         }
-        else if ($way == 1) {
-            return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_NUM);
+        else if ($way === 1) {
+            //return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_NUM);
+            return $this->Mysqli_fetch_all($obj, 1);
         }
-        else if ($way == 2) {
-            return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_BOTH);
+        else if ($way === 2) {
+            //return mysqli_fetch_all(mysqli_query($this->SqlConnect, $SqlSentence), MYSQLI_BOTH);
+            return $this->Mysqli_fetch_all($obj, 2);
         }
         else {
             return null;

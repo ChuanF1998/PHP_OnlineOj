@@ -64,6 +64,8 @@ $code = $headCode.$functionCode.$mainCode;
 //获取当前的时间戳
 $timeSecond = time();
 $codeFileName = $userCodePath."/".$timeSecond.".cpp";
+$executableFile = $userCodePath."/".$timeSecond;
+$errorFile = $userCodePath."/error.txt";
 $codeFile = fopen($codeFileName, 'w');
 if(!fwrite ($codeFile, $code)) {
     $res[] = array('status' => '864');
@@ -74,21 +76,37 @@ fclose($codeFile);
 $myDatabase = new connect("online_oj");
 
 //编译
-$command = "g++ $codeFileName -o $timeSecond";
-$compileRet = shell_exec($command);
+$command = "g++ $codeFileName -o $executableFile -std=c++11 2>$errorFile";
+shell_exec($command);
+$compileRet = (new file_read($userCodePath."/error.txt"))->Read();
 if ($compileRet !== null) {
     $sql = "insert into answer_details(user_id,question_id,questionName,types,species,state,prog_language,is_pass)
 values('$userId','$questionId','$questionName','$types','$species','编译失败','$language','0')";
     $myDatabase->Insert($sql);
-
-    $res[] = array('status' => '870', 'msg'=>'编译失败', 'info'=>$compileRet);
+    shell_exec("rm -rf $errorFile");
+    shell_exec("rm -rf $executableFile");
+    $res[] = array('status' => '1002', 'msg'=>'编译失败', 'info'=>$compileRet);
     exit(json_encode($res));
 }
 
-$command = $userCodePath."/".$timeSecond;
+$command = $executableFile;
 $runRet = shell_exec($command);
+if ($runRet === "100.0") {
+    $sql = "insert into answer_details(user_id,question_id,questionName,types,species,state,prog_language,is_pass)
+values('$userId','$questionId','$questionName','$types','$species','答案正确','$language','1')";
+    $myDatabase->Insert($sql);
+    shell_exec("rm -rf $errorFile");
+    shell_exec("rm -rf $executableFile");
+    $res[] = array('status' => '1000', 'info'=>$runRet);
+    exit(json_encode($res));
+}
 
-$res[] = array('status' => '900', 'info'=>$runRet);
+$sql = "insert into answer_details(user_id,question_id,questionName,types,species,state,prog_language,is_pass)
+values('$userId','$questionId','$questionName','$types','$species','答案错误','$language','0')";
+$myDatabase->Insert($sql);
+shell_exec("rm -rf $errorFile");
+shell_exec("rm -rf $executableFile");
+$res[] = array('status' => '1001', 'info'=>$runRet);
 exit(json_encode($res));
 
 

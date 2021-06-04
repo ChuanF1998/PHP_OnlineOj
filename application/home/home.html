@@ -33,7 +33,7 @@
         <div class="div1">
             <div >
             <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
-            <img onclick="scapeToUser()" id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
+            <img onclick="scapeToUser()" id="user_img0" src="../src/icon/default.png" class="user0_img" alt=""/>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="user_and_hot" style="margin-top: 60px;">
                 <div id="user_situation_area" style="display: none">
                     <div class="user1_img">
-                        <img id="user_img1" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user1_img_style" alt=""/>
+                        <img id="user_img1" src="../src/icon/default.png" class="user1_img_style" alt=""/>
                     </div>
                     <div class="user1_name" id="user1_name">
 
@@ -94,7 +94,7 @@
                     <button  class="hot_login" onclick="window.location='../login/h_login.html'">登录</button>
                 </div>
             </div>
-            <!--热点区域-->
+            <!--热点区域
             <div class="user_and_hot" style="margin-top: 390px;">
                 <table class="table_hot">
                     <tr class="hot1">
@@ -113,7 +113,7 @@
                         <td>ewfasd</td>
                     </tr>
                 </table>
-            </div>
+            </div>-->
         </div>
     </div>
 
@@ -126,8 +126,7 @@
 <script type="text/javascript">
     //点击头像跳转
     function scapeToUser() {
-        window.location.href = 'http://localhost/PHP_OnlineOj/application/personal_center/myInformation/';
-        //window.location.href = 'http://localhost/PHP_OnlineOj/application/personal_center/myInformation/?id='+UserId;
+        window.open( '../personal_center/myInformation/');
     }
 
 </script>

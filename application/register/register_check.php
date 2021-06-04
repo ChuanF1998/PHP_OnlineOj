@@ -43,29 +43,37 @@ if ($Password !== $ConfirmPwd) {
 
 //向数据库中添加数据
 //先查询数据库中电话是否已经注册过
-$SqlSentence = "select id from student where tel='$Tel'";
+$SqlSentence = "select id from student where tel='$Tel' limit 1";
 $obj = $MyDatabase->SingleSelect($SqlSentence, 0);
-if ($obj != null) {
-    $s = EchoHtml($Feedback,'message1');
+
+if ($obj === null) {
+    $s = EchoHtml($Feedback,'message3');
     exit($s);
 }
-//创建加密类，对密码进行加密
-$MyEncryption = new encryption($Password);
-$EncryPwd = $MyEncryption->GetCipher();
-$SqlSentence = "insert into student(tel, username, password) values('$Tel', '$Username', '$EncryPwd')";
-if ($MyDatabase->Insert($SqlSentence)) {
-    //写入日志
-    $time = (new date())->GetSerDate();
-    $data = "Tel[$Tel]  Date[$time] register";
-    (new log("../src/log/register.txt"))->Register($data);
-    //创建文件夹
-    CreateFolder("../src/users/".$Tel);
-    //返回信息
-    $s = EchoHtml($Feedback,'message2');
-    exit($s);
+
+if ($obj === "841") {
+    //创建加密类，对密码进行加密
+    $MyEncryption = new encryption($Password);
+    $EncryPwd = $MyEncryption->GetCipher();
+    $SqlSentence = "insert into student(tel, username, password) values('$Tel', '$Username', '$EncryPwd')";
+    if ($MyDatabase->Insert($SqlSentence)) {
+        //写入日志
+        $time = (new date())->GetSerDate();
+        $data = "Tel[$Tel]  Date[$time] register";
+        (new log("../src/log/register.txt"))->Register($data);
+        //创建文件夹
+        CreateFolder("../src/users/".$Tel); 
+        //返回信息
+        $s = EchoHtml($Feedback,'message2');
+        exit($s);
+    }
+    else {
+        $s = EchoHtml($Feedback,'message3');
+        exit($s);
+    }
 }
 else {
-    $s = EchoHtml($Feedback,'message3');
+    $s = EchoHtml($Feedback,'message1');
     exit($s);
 }
 

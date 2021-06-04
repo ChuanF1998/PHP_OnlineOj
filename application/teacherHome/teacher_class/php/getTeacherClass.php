@@ -36,8 +36,10 @@ if ($obj2 === null) {
     exit(json_encode($res));
 }
 if ($obj2 === "841") {
-    $res[] = array('status' => '841');
-    exit(json_encode($res));
+    $tmp['numbers'] = 0;
+    $obj[] = $tmp;
+    $obj[] = array('status' => '900');
+    exit(json_encode($obj));
 }
 
 $obj[] = $obj2;

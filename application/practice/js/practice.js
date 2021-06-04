@@ -85,9 +85,21 @@ function submitCode(form) {
         timeout: 5000,
         datatype: 'json',
         success: function (data) {
-            console.log(data);
-            $("submit-button").attr('onclick', 'submit()').text("点击提交");
+            $("#submit-button").attr('onclick', 'submit()').text("点击提交");
             let resData = eval('('+data+')');
+            console.log(resData);
+            if (resData[resData.length - 1]['status'] === "1002") {
+                console.log("1002");
+                $("#prompt").css('color', '#ea0e07').text("编译错误"+resData[resData.length - 1]['info']);
+            }
+            if (resData[resData.length - 1]['status'] === "1000") {
+                console.log("1000");
+                $("#prompt").css('color', '#25bb9b').text("已通过所有测试用例");
+            }
+            if (resData[resData.length - 1]['status'] === "1001") {
+                console.log("1001");
+                $("#prompt").css('color', '#ea0e07').text("未通过所有测试用例");
+            }
         },
         error: function () {
             alert("error");

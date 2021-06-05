@@ -1,0 +1,16 @@
+int main()
+{
+	solution s;
+	vector<int> inputB{ 5, 43, 29, 8, 5 };
+	vector<int> inputA{ 1, 4, 8, 9, 23 };
+	vector<int> result{ 4, 39, 21, -1, -18 };
+	int passCount = 0;
+	for (int i = 0; i < 10; ++i) {
+		if (result[i] == s.Add(inputA[i], inputB[i])) {
+			passCount++;
+		}
+	}
+	double res = (double)passCount * 100 / 10;
+	cout << setiosflags(ios::fixed) << setprecision(1) << res << endl;
+	return 0;
+}

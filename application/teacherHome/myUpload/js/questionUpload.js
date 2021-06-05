@@ -24,6 +24,7 @@ function upload() {
     $("#spanA1").hide();
     $("#spanA2").show();
     $("#spanA3").show();
+    $("input[name='questionName']").val("");
     $("#question-table").css("display", "none");
     $("#question-upload").css("display", "block");
 }
@@ -47,7 +48,8 @@ function save() {
     let func = $("input[name='function']")[0].files[0];
     let main = $("input[name='main']")[0].files[0];
     let form = new FormData();
-    if (questionName === "" || describe === "" || head === "" || func === "" || main==="" || level==="" || species==="") {
+    if ( typeof(describe) === "undefined" ||  typeof(head) === "undefined" ||  typeof(func) === "undefined"
+        ||  typeof(main)==="undefined" || typeof(species) === "undefined" ||typeof(level) === "undefined") {
         alert("请检查输入项是否正确");
     }
     else {
@@ -66,14 +68,6 @@ function save() {
         form.append('describe', describe);
         form.append('func', func);
         form.append('main', main);
-        // form['uploaderId'] = teacherId;
-        // form['difficulty'] = level;
-        // form['species'] = species;
-        // form['questionName'] = questionName;
-        // form['describe'] = describe;
-        // form['head'] = head;
-        // form['function'] = func;
-        // form['main'] = main;
         $.ajax({
             type: "post",
             url: uploadFileUrl,

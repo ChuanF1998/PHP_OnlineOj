@@ -12,6 +12,23 @@ if (!isset($_POST['myNickname'], $_POST['mySchool'], $_POST['myMajor'], $_POST['
     exit(json_encode($res));
 }
 $userId = $_COOKIE['user_id'];
+
+$MyDatabase = new connect("online_oj");
+$Table = "student";
+$myNickname = $_POST['myNickname'];
+$mySchool = $_POST['mySchool'];
+$myMajor = $_POST['myMajor'];
+$myClass = $_POST['myClass'];
+$myGender = $_POST['myGender'];
+
+$SqlSentence = "update $Table 
+set username='$myNickname',gender='$myGender',school='$mySchool',major='$myMajor',class='$myClass' 
+where id='$userId'";
+if (!$MyDatabase->Updata($SqlSentence)) {
+    $res = array('status' => '889', 'ss'=>$SqlSentence);
+    exit(json_encode($res));
+}
+
 //如果未上传图片，那么与图片相关的操作不做
 if (isset($_FILES['myImgFile']['name'])) {
     if ($_FILES['myImgFile']['error'] > 0) {
@@ -62,18 +79,5 @@ if (isset($_FILES['myImgFile']['name'])) {
     exit(json_encode($res));*/
 }
 
-$MyDatabase = new connect("online_oj");
-$Table = "student";
-$myNickname = $_POST['myNickname'];
-$mySchool = $_POST['mySchool'];
-$myMajor = $_POST['myMajor'];
-$myClass = $_POST['myClass'];
-$myGender = $_POST['myGender'];
-
-$SqlSentence = "update $Table 
-set username='$myNickname',gender='$myGender',school='$mySchool',major='$myMajor',class='$myClass' 
-where id='$userId'";
-if ($MyDatabase->Updata($SqlSentence)) {
-    $res = array('status' => '900');
-    echo json_encode($res);
-}
+$res = array('status' => '900');
+echo json_encode($res);

@@ -177,7 +177,8 @@ html body {
 .td-div {
     width: 10px;
     height: 10px;
-    border-radius: 50%
+    border-radius: 50%;
+    margin: auto;
 }
 
 .td-div-default {
@@ -196,4 +197,71 @@ html body {
     margin-top: 40px;
     border: 1px solid #ffffff;
     border-radius: 10%;
+}
+
+.background {
+    display: none;
+    background-color: #B3B3B3;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+
+.pop {
+    display: none;
+    background-color: #FFFFFF;
+    z-index: 11;
+    width: 600px;
+    height: 400px;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    margin:auto;
+}
+
+.close {
+    text-align: right;
+    margin-right: 5px;
+    background-color: #F8F8F8;
+}
+
+.close a {
+    text-decoration: none;
+    color: #2D2C3B;
+}
+
+.class1-question {
+    margin-left: 50px;
+}
+
+.class1-question dl {
+    font-size: 15px;
+    height: 30px;
+}
+
+.class1-question dt{
+    width: 150px;
+    float:left;
+}
+
+.class-question dd {
+    width: 150px;
+    margin-left:200px;
+}
+
+.class-question-button {
+    width: 100px;
+    height: 30px;
+    background-color: #25bb9b;
+    color: #FFFFFF;
+    border: 1px solid #25bb9b;
+    margin-left: 250px;
 }

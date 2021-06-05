@@ -72,6 +72,7 @@ function getMyClass(key) {
         timeout: 5000,
         datatype: 'json',
         success: function (data) {
+            console.log(data);
             let resData = eval('('+data+')');
             Data = resData;
             //console.log(resData);

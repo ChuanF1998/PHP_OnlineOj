@@ -64,19 +64,19 @@ function funAll() {
     let s = "";
     for (let i = classQuestion.length - 1; i >= 0; --i) {
         if (classQuestion[i].isPass === "1") {
-            s += "<tr>"
+            s += "<tr onclick='scapeToClassQue(this)'>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-green\"></div></td>"
                 +"</tr>";
         }
         if (classQuestion[i].isPass === "0") {
-            s += "<tr>"
+            s += "<tr onclick='scapeToClassQue(this)'>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-red\"></div></td>"
                 +"</tr>";
         }
         if (classQuestion[i].isPass === "null") {
-            s += "<tr>"
+            s += "<tr onclick='scapeToClassQue(this)'>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-default\"></div></td>"
                 +"</tr>";
@@ -91,7 +91,7 @@ function funPass() {
     let s = "";
     let queCount = completeQueData.length;
     for (let i = queCount - 1; i >= 0; --i) {
-        s += "<tr>"
+        s += "<tr onclick='scapeToClassQue(this)'>"
             +"<td class=\"td1\"><span>" +completeQueData[i].questionName +"</span></td>"
             +"<td><div class=\"td-div td-div-green\"></div></td>"
             +"</tr>";
@@ -105,13 +105,13 @@ function funNoPass() {
     let s = "";
     for (let i = classQuestion.length - 1; i >= 0; --i) {
         if (classQuestion[i].isPass === "null") {
-            s += "<tr>"
+            s += "<tr onclick='scapeToClassQue(this)'>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-default\"></div></td>"
                 +"</tr>";
         }
         if (classQuestion[i].isPass === "0") {
-            s += "<tr>"
+            s += "<tr onclick='scapeToClassQue(this)'>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-red\"></div></td>"
                 +"</tr>";
@@ -183,4 +183,8 @@ function notPass(form) {
             alert("未知错误！");
         }
     });
+}
+
+function scapeToClassQue(obj) {
+    console.log(111);
 }

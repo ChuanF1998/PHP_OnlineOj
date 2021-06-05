@@ -5,13 +5,6 @@ let userDataUploadUrl = "php/dataUpload.php";
 let UserInfo;
 
 $(document).ready(function () {
-/*    let thisURL = document.URL;
-    let val = thisURL.split('?')[1];
-    let id = val.split("=")[1];
-    console.log(id);
-    if (id === '-1') {
-        window.location.href = 'http://localhost/PHP_OnlineOj/application/login/h_login.html';
-    }*/
     getId();
     getUserData();
     $("#user_img0").css("display", "block");
@@ -87,6 +80,7 @@ function save() {
         processData:false,
         contentType:false,
         success: function (data) {
+            console.log(data);
             alert("修改成功");
             window.location.reload();
             $("#info-loading").css("display", "none");

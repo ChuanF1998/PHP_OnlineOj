@@ -65,6 +65,7 @@ $(document).ready(function () {
 function funAll() {
     $("ul li:eq(3)").css("left", "0");
     $("#table-student").empty("");
+    //$("#question_table tr:not(:first)").remove();
     let s = "";
     for (let i = allStudent.length - 1; i >= 0; --i) {
         if (allStudent[i].isPass === "1") {
@@ -72,7 +73,7 @@ function funAll() {
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
-                +"<td><div class=\"td-div td-div-green\"></div></td>"
+                +"<td class=\"td1\"><span><div class=\"td-div td-div-green\"></div></span></td>"
                 +"</tr>";
         }
         if (allStudent[i].isPass === "0") {
@@ -88,7 +89,7 @@ function funAll() {
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
-                +"<td><div class=\"td-div td-div-default\"></div></td>"
+                +"<td class=\"td1\"><div class=\"td-div td-div-default\"></div></td>"
                 +"</tr>";
         }
     }

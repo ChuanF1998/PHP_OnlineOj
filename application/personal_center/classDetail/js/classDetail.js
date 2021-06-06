@@ -2,7 +2,7 @@ let getIdUrl = "../../common/php/getUserId.php";
 let getClassQuestionUrl = "php/getClassDetail.php";
 let completeQuestionUrl = "php/getCompleteQuestion.php";
 let notPassQuestionUrl = "php/notPassQuestion.php";
-let useId;
+let useId;      //用户id
 let classData;  //班级相关数据
 let classQuestion; //班级题目
 let completeQueData; //已通过班级题目
@@ -48,12 +48,12 @@ $(document).ready(function () {
                 })
             }
             else {
-                window.location.href = 'http://localhost/PHP_OnlineOj/application/login/h_login.html';
+                window.location.href = '../../login/h_login.html';
             }
         },
         error: function () {
             alert("未知错误！");
-            window.location.href = 'http://localhost/PHP_OnlineOj/application/login/h_login.html';
+            window.location.href = '../../login/h_login.html';
         }
     });
 
@@ -65,18 +65,21 @@ function funAll() {
     for (let i = classQuestion.length - 1; i >= 0; --i) {
         if (classQuestion[i].isPass === "1") {
             s += "<tr onclick='scapeToClassQue(this)'>"
+                +"<td class=\"td1\"><span>" +classQuestion[i].classQuestionId +"</span></td>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-green\"></div></td>"
                 +"</tr>";
         }
         if (classQuestion[i].isPass === "0") {
             s += "<tr onclick='scapeToClassQue(this)'>"
+                +"<td class=\"td1\"><span>" +classQuestion[i].classQuestionId +"</span></td>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-red\"></div></td>"
                 +"</tr>";
         }
         if (classQuestion[i].isPass === "null") {
             s += "<tr onclick='scapeToClassQue(this)'>"
+                +"<td class=\"td1\"><span>" +classQuestion[i].classQuestionId +"</span></td>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-default\"></div></td>"
                 +"</tr>";
@@ -92,6 +95,7 @@ function funPass() {
     let queCount = completeQueData.length;
     for (let i = queCount - 1; i >= 0; --i) {
         s += "<tr onclick='scapeToClassQue(this)'>"
+            +"<td class=\"td1\"><span>" +classQuestion[i].classQuestionId +"</span></td>"
             +"<td class=\"td1\"><span>" +completeQueData[i].questionName +"</span></td>"
             +"<td><div class=\"td-div td-div-green\"></div></td>"
             +"</tr>";
@@ -106,12 +110,14 @@ function funNoPass() {
     for (let i = classQuestion.length - 1; i >= 0; --i) {
         if (classQuestion[i].isPass === "null") {
             s += "<tr onclick='scapeToClassQue(this)'>"
+                +"<td class=\"td1\"><span>" +classQuestion[i].classQuestionId +"</span></td>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-default\"></div></td>"
                 +"</tr>";
         }
         if (classQuestion[i].isPass === "0") {
             s += "<tr onclick='scapeToClassQue(this)'>"
+                +"<td class=\"td1\"><span>" +classQuestion[i].classQuestionId +"</span></td>"
                 +"<td class=\"td1\"><span>" +classQuestion[i].questionName +"</span></td>"
                 +"<td><div class=\"td-div td-div-red\"></div></td>"
                 +"</tr>";
@@ -186,5 +192,14 @@ function notPass(form) {
 }
 
 function scapeToClassQue(obj) {
-    console.log(111);
+    if (window.localStorage) {
+        let classQuestionId = $("#class-question tr").eq($(obj).index()).find("td:first").find("span").html();
+        localStorage.setItem('classQuestion', JSON.stringify(allQuestionData[classQuestionId]));
+        console.log(localStorage.getItem('classQuestion'));
+        window.open('../classPractice/');
+    }
+    else {
+        alert("该浏览器不支持，请使用高版本浏览器");
+    }
 }
+

@@ -13,7 +13,7 @@ $classId = $_POST['classId'];
 
 $MyDatabase = new connect("online_oj");
 $Table = "class_question";
-$sqlSentence = "select classQuestionId,questionName,types
+$sqlSentence = "select classQuestionId,questionName,teacherId,types,filedir
 from $Table
 where classId='$classId' and isUse='1'";
 

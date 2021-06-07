@@ -8,6 +8,7 @@ $(document).ready(function () {
     if (userId === null) {
         window.location.href = "../login/h_login.html";
     }
+    console.log(question);
     a();
     let form = {};
     $("title").text(question['name']);
@@ -49,6 +50,8 @@ function submit() {
     form['types'] = question['types'];
     form['species'] = question['species'];
     form['language'] = language;
+    form['submit_times'] = question['submit_times'];
+    form['pass_times'] = question['pass_times'];
     console.log(form);
     submitCode(form);
 }

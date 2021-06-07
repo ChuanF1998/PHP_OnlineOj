@@ -1,7 +1,9 @@
 let getIdUrl = "../../common/php/getUserId.php";
+let getClassQuestionUrl = "php/getClassQuestion.php";
+let submitUrl = "php/onlineJudge.php";
 let question = eval('('+localStorage.getItem('classQuestion')+')');
 let classData = eval('('+localStorage.getItem('classData')+')');
-let useId;
+let userId;
 
 $(document).ready(function () {
     $.ajax({
@@ -13,7 +15,7 @@ $(document).ready(function () {
         success: function (data) {
             let resData = eval('('+data+')');
             if (resData['status'] === "900") {
-                useId = resData['userId'];
+                userId = resData['userId'];
             }
             else {
                 window.location.href = '../../login/h_login.html';
@@ -24,16 +26,18 @@ $(document).ready(function () {
             window.location.href = '../../login/h_login.html';
         }
     });
+    console.log(question);
+    console.log(classData);
     a();
     let form = {};
     $("title").text(classData['className']+"-"+question['questionName']);
     $("input[name='language'][value='C++']").prop("checked", true);
     let type = $("input[name='language']:checked").val();
-    form['questionId'] = question['classQuestionId'];
+    form['classId'] = classData['classId'];
     form['filedir'] = question['filedir'];
     form['teacherId'] = question['teacherId'];
     form['language'] = type;
-    //console.log(form);
+    console.log(form);
     getQuestion(form);
 })
 
@@ -52,5 +56,75 @@ function a() {
 }
 
 function getQuestion(form) {
+    return $.ajax({
+        type: "post",
+        url: getClassQuestionUrl,
+        data: form,
+        timeout: 3000,
+        datatype: 'json',
+        success: function (data) {
+            let resData = eval('('+data+')');
+            //console.log(resData);
+            if (resData['status'] === "900") {
+                $("#title-content").text(resData['head']);
+                $("#textarea-box").text(resData['function']);
+            }
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
 
+function submit() {
+    let language = $("input[name='language']:checked").val();
+    let s = $("#textarea-box").val();
+    let form = {};
+    form['functionCode'] = s;
+    form['userId'] = userId;
+    form['classId'] = classData['classId'];
+    form['filedir'] = question['filedir'];
+    form['questionId'] = question['classQuestionId'];
+    //form['teacherId'] = question['teacherId'];
+    //form['tel'] = tel;
+    form['questionName'] = question['questionName'];
+    form['types'] = question['types'];
+    form['language'] = language;
+    console.log(form);
+    submitCode(form);
+}
+
+function submitCode(form) {
+    return $.ajax({
+        type: "post",
+        url: submitUrl,
+        data: form,
+        beforeSend: function(){
+            $("#submit-button").attr('onclick', '').text("提交中");
+        },
+        timeout: 5000,
+        datatype: 'json',
+        success: function (data) {
+            console.log(data);
+            $("#submit-button").attr('onclick', 'submit()').text("点击提交");
+            let resData = eval('('+data+')');
+            console.log(resData);
+            if (resData[resData.length - 1]['status'] === "1002") {
+                console.log("1002");
+                $("#prompt").css('color', '#ea0e07').text("编译错误"+resData[resData.length - 1]['info']);
+            }
+            if (resData[resData.length - 1]['status'] === "1000") {
+                console.log("1000");
+                $("#prompt").css('color', '#25bb9b').text("已通过所有测试用例");
+            }
+            if (resData[resData.length - 1]['status'] === "1001") {
+                console.log("1001");
+                $("#prompt").css('color', '#ea0e07').text("未通过所有测试用例");
+            }
+        },
+        error: function () {
+            alert("error");
+            $("#submit-button").attr('onclick', 'submit()').text("点击提交");
+        }
+    });
 }

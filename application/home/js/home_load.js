@@ -146,7 +146,7 @@ function GetAnswerDetail(DetailUrl, key) {
         error: function () {
             alert("error");
         }
-    })
+    });
 }
 
 function DataApply(data_url, user_url, DetailUrl,key, button, event) {

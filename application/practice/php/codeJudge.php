@@ -37,6 +37,13 @@ $types = $_POST['types'];
 $species = $_POST['species'];
 $language = $_POST['language'];
 
+if (!isset($_POST['submit_times'], $_POST['pass_times'])) {
+    $res[] = array('status' => '862');
+    exit(json_encode($res));
+}
+$submit_times = $_POST['submit_times'] + 1;
+$pass_times = $_POST['pass_times'] + 1;
+
 //创建一个保存用户代码的文件夹
 $userCodePath = "../../src/users/".$tel."/code";
 if (!file_exists($userCodePath)) {
@@ -75,6 +82,8 @@ fclose($codeFile);
 
 $myDatabase = new connect("online_oj");
 
+$myDatabase->Updata("update titles set submit_times='$submit_times'");
+
 //编译
 $command = "g++ $codeFileName -o $executableFile -std=c++11 2>$errorFile";
 shell_exec($command);
@@ -95,6 +104,7 @@ if ($runRet === "100.0") {
     $sql = "insert into answer_details(user_id,question_id,questionName,types,species,state,prog_language,is_pass)
 values('$userId','$questionId','$questionName','$types','$species','答案正确','$language','1')";
     $myDatabase->Insert($sql);
+    $myDatabase->Updata("update titles set pass_times='$pass_times'");
     shell_exec("rm -rf $errorFile");
     shell_exec("rm -rf $executableFile");
     $res[] = array('status' => '1000', 'info'=>$runRet);

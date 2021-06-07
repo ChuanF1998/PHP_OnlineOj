@@ -21,7 +21,7 @@ include("../../../common/php/com_func.php");
 
 $table = "class_que_answer";
 $myDatabase = new connect("online_oj");
-$sqlSentence = "select distinct studentId,classQuestionId,studentName,types,submitTime,isPass
+$sqlSentence = "select distinct studentId,classQuestionId,types,submitTime,isPass
 from $table
 where classId='$classId' and classQuestionId='$classQuestionId' and isPass='0'";
 $obj = $myDatabase->MultitermSelect($sqlSentence, 0);

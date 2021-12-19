@@ -25,11 +25,16 @@
             欢迎使用在线代码测验平台
         </div>
         <div class="div1">
-            <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
-            <button class="search_button" type="button">搜索</button>
+<!--            <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
+            <button class="search_button" type="button">搜索</button>-->
         </div>
         <div class="div1">
-                <img id="user_img0" src="http://localhost/PHP_OnlineOj/application/src/icon/default.png" class="user0_img" alt=""/>
+                <img id="user_img0" src="../../src/icon/default.png" class="user0_img" alt=""/>
+            <div id="login-box" class="div-choice">
+                <img src="../../src/icon/home_icon.jpg" onclick="window.location='../../home/home.html'" alt="home"/>
+                <img src="../../src/icon/mine.jpg" onclick="window.location = '../myInformation/'" alt="mine"/>
+                <img src="../../src/icon/exit.jpg" onclick="exit()" alt="exit"/>
+            </div>
         </div>
     </div>
 
@@ -130,6 +135,6 @@
 <!--<script type="text/javascript" src="../../common/js/common.js"></script>-->
 <script type="text/javascript" src="../perCenterOption.js"></script>
 <script type="text/javascript" src="js/myInformation.js"></script>
-
+<script type="text/javascript" src="../../common/js/exit.js"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ let getTeacherIdUrl = "../../common/php/getTeacherId.php";
 let getStudentPassUrl = "php/getStudentPass.php";
 let getStudentNotPassUrl = "php/getStudentNotPass.php";
 let getAllStudentUrl = "php/getAllStudent.php";
+let getStudentCodeUrl = "php/getStudentCode.php";
 let question;
 let allStudent;
 let pass;
@@ -31,24 +32,24 @@ $(document).ready(function () {
                     pass.pop();
                     notPass.pop();
                     allStudent.pop();
+                    allStudent = allStudent.sort(function (a, b) {
+                        return b.username.localeCompare(a.username, 'zh');
+                    });
                     for (let i = 0; i < allStudent.length; ++i) {
                         allStudent[i].isPass = "null";
+                        allStudent[i].submitId = -1;
                         allStudentHash[allStudent[i].id] = allStudent[i];
                     }
                     for (let i = 0; i < notPass.length; ++i) {
                         allStudentHash[notPass[i].studentId].isPass = notPass[i].isPass;
+                        allStudentHash[notPass[i].studentId].submitId = notPass[i].submitId;
                     }
                     for (let i = 0; i < pass.length; ++i) {
                         allStudentHash[pass[i].studentId].isPass = pass[i].isPass;
+                        allStudentHash[pass[i].studentId].submitId = pass[i].submitId;
                     }
-                    allStudent.sort(function (a, b) {
-                        if (a.username >= b.username) {
-                            return true;
-                        }
-                        return false;
-                    });
                     funAll();
-                    //console.log(allStudent);
+                    console.log(allStudent);
                 })
 
             }
@@ -69,7 +70,7 @@ function funAll() {
     let s = "";
     for (let i = allStudent.length - 1; i >= 0; --i) {
         if (allStudent[i].isPass === "1") {
-            s += "<tr>"
+            s += "<tr onclick='code(this)'>"
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
@@ -77,7 +78,7 @@ function funAll() {
                 +"</tr>";
         }
         if (allStudent[i].isPass === "0") {
-            s += "<tr>"
+            s += "<tr onclick='code(this)'>"
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
@@ -85,7 +86,7 @@ function funAll() {
                 +"</tr>";
         }
         if (allStudent[i].isPass === "null") {
-            s += "<tr>"
+            s += "<tr onclick='code(this)'>"
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
@@ -102,7 +103,7 @@ function funPass() {
     let s = "";
     for (let i = allStudent.length - 1; i >= 0; --i) {
         if (allStudent[i].isPass === "1") {
-            s += "<tr>"
+            s += "<tr onclick='code(this)'>"
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
@@ -119,7 +120,7 @@ function funNotPass() {
     let s = "";
     for (let i = allStudent.length - 1; i >= 0; --i) {
         if (allStudent[i].isPass === "0") {
-            s += "<tr>"
+            s += "<tr onclick='code(this)'>"
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
@@ -127,7 +128,7 @@ function funNotPass() {
                 +"</tr>";
         }
         if (allStudent[i].isPass === "null") {
-            s += "<tr>"
+            s += "<tr onclick='code(this)'>"
                 +"<td class=\"td1\"><span>" +allStudent[i].username +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].major +"</span></td>"
                 +"<td class=\"td1\"><span>" +allStudent[i].class +"</span></td>"
@@ -174,8 +175,7 @@ function getStudentNotPass(form) {
             //console.log(notPass);
             let notPassCount = notPass.length;
             if (notPass[notPassCount - 1]['status'] === "900") {
-
-                console.log(notPass);
+                //console.log(notPass);
             }
         },
         error: function () {
@@ -193,14 +193,53 @@ function getAllStudent(form) {
         datatype: 'json',
         success: function (data) {
             allStudent = eval('('+data+')');
-            //console.log(allStudent);
+            console.log(allStudent);
             let studentCount = allStudent.length;
             if (allStudent[studentCount - 1]['status'] === "900") {
-
             }
         },
         error: function () {
             alert("error");
         }
     });
+}
+
+function code(obj) {
+    let i = allStudent.length - $(obj).index() - 1;
+    let popBox = document.getElementById("pop-box");
+    let popLayer = document.getElementById("back-box");
+    $("input[name='questionName']").val("");
+    popBox.style.display = "block";
+    popLayer.style.display = "block";
+    let form = {};
+    form['questionId'] = question['classQuestionId'];
+    form['classId'] = localStorage.getItem('classId');
+    form['userId'] = allStudent[i].id;
+    form['filedir'] = allStudent[i].submitId;
+    console.log(form);
+    $.ajax({
+        type: "post",
+        url: getStudentCodeUrl,
+        data: form,
+        timeout: 3000,
+        datatype: 'json',
+        success: function (data) {
+            let resData = eval('('+data+')');
+            console.log(resData);
+            if (resData['status'] === "900") {
+                $("#textarea-box").text(resData['code']);
+            }
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+
+function closeBox() {
+    let popBox = document.getElementById("pop-box");
+    let popLayer = document.getElementById("back-box");
+    popBox.style.display = "none";
+    popLayer.style.display = "none";
+    $("textarea-box").text("");
 }

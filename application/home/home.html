@@ -27,16 +27,23 @@
             欢迎使用在线代码测验平台
         </div>
         <div class="div1">
-            <label><input  type="text" placeholder="请输入搜索内容" name="keywords" class="input_style"/></label>
+            <label><input  type="text" placeholder="请输入搜索题目关键字" name="keywords" class="input_style"/></label>
             <button class="search_button" type="button" onclick="searchQuestion()">搜索</button>
         </div>
         <div class="div1">
             <div >
             <button id="login_b" class="login_button" type="button" onclick="window.location='../login/h_login.html'">登录/注册</button>
             <img onclick="scapeToUser()" id="user_img0" src="../src/icon/default.png" class="user0_img" alt=""/>
+                <div id="login-box" class="div-choice">
+                    <img src="../src/icon/home_icon.jpg" onclick="window.location='home.html'" alt="home"/>
+                    <img src="../src/icon/mine.jpg" onclick="window.location = '../personal_center/myInformation/'" alt="mine"/>
+                    <img src="../src/icon/exit.jpg" onclick="exit1()" alt="exit"/>
+                </div>
             </div>
         </div>
     </div>
+
+
 
     <div style="width: 1500px;">
         <!--左边题目分类-->
@@ -124,12 +131,36 @@
 <script type="text/javascript" src="js/home_load.js"></script>
 <script type="text/javascript" src="js/home_option.js"></script>
 <script type="text/javascript" src="../common/js/search.js"></script>
+<script type="text/javascript" src="../common/js/exit.js"></script>
+<script type="text/javascript">
+    let exit1Url = "../common/php/exit.php";
+    function exit1() {
+        return $.ajax({
+                type: "post",
+                url: exit1Url,
+                data: "",
+                timeout: 3000,
+                datatype: 'json',
+                success: function (data) {
+                    let resData = eval('('+data+')');
+                    if (resData[0]['status'] === "900") {
+                        window.location = '../login/h_login.html';
+                    }
+                },
+                error: function () {
+                    alert("error");
+                }
+            }
+        );
+    }
+</script>
 <script type="text/javascript">
     //点击头像跳转
     function scapeToUser() {
-        window.open( '../personal_center/myInformation/');
+        window.location = '../personal_center/myInformation/';
     }
-
+</script>
+<script>
 </script>
 </body>
 </html>

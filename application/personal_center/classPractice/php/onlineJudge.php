@@ -43,6 +43,7 @@ if (!file_exists($studentCodePath)) {
     }
 }
 
+
 //查找主函数文件是否存在
 $questionPath = "../../../src/class/".$classId."/programing/" . $filedir . "/main.txt";
 if (!file_exists($questionPath)) {
@@ -63,6 +64,7 @@ $timeSecond = time();
 $codeFileName = $studentCodePath . "/" . $timeSecond . ".cpp";
 $executableFile = $studentCodePath . "/" . $timeSecond;
 $errorFile = $studentCodePath . "/error.txt";
+$outputFile = $studentCodePath."/output.txt";
 
 $functionFileName = $studentCodePath . "/" . $timeSecond . ".txt";
 $functionFile = fopen($functionFileName, 'w');
@@ -70,6 +72,7 @@ if (!fwrite($functionFile, $functionCode)) {
     $res[] = array('status' => '878');
     exit(json_encode($res));
 }
+fclose($functionFile);
 
 $codeFile = fopen($codeFileName, 'w');
 if (!fwrite($codeFile, $code)) {
@@ -78,47 +81,72 @@ if (!fwrite($codeFile, $code)) {
 }
 fclose($codeFile);
 
-
 $myDatabase = new connect("online_oj");
 
-$res[] = array('status' => '1001', 'sd'=>$sql);
-exit(json_encode($res));
-
 //编译
-$command = "g++ $codeFileName -o $executableFile -std=c++11 2>$errorFile";
-shell_exec($command);
-$compileRet = (new file_read($studentCodePath . "/error.txt"))->Read();
-if ($compileRet !== null) {
+$s = $studentCodePath.'/';
+$resCode = shell_exec("./cppCode $s $timeSecond");
+if ($resCode === '1') {
     $sql = "insert into 
 class_que_answer(studentId,classId,classQuestionId,questionName,types,IsPass,state,prog_language,submitId)
 values('$userId','$classId','$questionId','$questionName','$types','0','编译失败','$language','$timeSecond')";
     $myDatabase->Insert($sql);
+    $compileRet = (new file_read($errorFile))->Read();
     shell_exec("rm -rf $errorFile");
-    shell_exec("rm -rf $executableFile");
-    $res[] = array('status' => '1002', 'msg' => '编译失败', 'info' => $compileRet);
+    $res[] = array('status' => '1001', 'msg'=>'编译失败', 'info'=>$compileRet);
     exit(json_encode($res));
 }
-
-$command = $executableFile;
-$runRet = shell_exec($command);
-if ($runRet === "100.0") {
+if ($resCode === '2') {
     $sql = "insert into 
 class_que_answer(studentId,classId,classQuestionId,questionName,types,IsPass,state,prog_language,submitId)
-values('$userId','$classId','$questionId','$questionName','$types','1','运行通过','$language','$timeSecond')";
+values('$userId','$classId','$questionId','$questionName','$types','0','段错误','$language','$timeSecond')";
     $myDatabase->Insert($sql);
     shell_exec("rm -rf $errorFile");
     shell_exec("rm -rf $executableFile");
-    $res[] = array('status' => '1000', 'info' => $runRet);
+    $res[] = array('status' => '1002', 'msg'=>'段错误');
     exit(json_encode($res));
 }
-
-$sql = "insert into 
+if ($resCode === '3') {
+    $sql = "insert into 
+class_que_answer(studentId,classId,classQuestionId,questionName,types,IsPass,state,prog_language,submitId)
+values('$userId','$classId','$questionId','$questionName','$types','0','运行超时','$language','$timeSecond')";
+    $myDatabase->Insert($sql);
+    shell_exec("rm -rf $errorFile");
+    shell_exec("rm -rf $executableFile");
+    $res[] = array('status' => '1003', 'msg'=>'运行超时');
+    exit(json_encode($res));
+}
+if ($resCode === '0') {
+    $runRet = (new file_read($outputFile))->Read();
+    //切割
+    $str = explode("\n", $runRet);
+    shell_exec("rm -rf $errorFile");
+    shell_exec("rm -rf $outputFile");
+    shell_exec("rm -rf $executableFile");
+    if ($str[0] === "100.0") {
+        $sql = "insert into 
+class_que_answer(studentId,classId,classQuestionId,questionName,types,IsPass,state,prog_language,submitId)
+values('$userId','$classId','$questionId','$questionName','$types','1','答案正确','$language','$timeSecond')";
+        $myDatabase->Insert($sql);
+        $res[] = array('status' => '1005', 'msg'=>'已通过所有测试用例');
+        exit(json_encode($res));
+    }
+    else {
+        $sql = "insert into 
 class_que_answer(studentId,classId,classQuestionId,questionName,types,IsPass,state,prog_language,submitId)
 values('$userId','$classId','$questionId','$questionName','$types','0','答案错误','$language','$timeSecond')";
-$myDatabase->Insert($sql);
-shell_exec("rm -rf $errorFile");
-shell_exec("rm -rf $executableFile");
-$res[] = array('status' => '1001', 'info' => $runRet);
-exit(json_encode($res));
+        $myDatabase->Insert($sql);
+        $info = "";
+        for ($i = 1; $i < count($str); $i++) {
+            $info .= $str[$i]."\r\n";
+        }
+        $res[] = array('status' => '1004', 'msg'=>'未通过所有测试用例', 'info'=>$info);
+        exit(json_encode($res));
+    }
+}
+if ($resCode === '6') {
+    $res[] = array('status' => '1006', 'msg'=>'系统内部错误');
+    exit(json_encode($res));
+}
 
 

@@ -16,7 +16,7 @@ $obj["result"] = "1";
 $path = "../../src/users/".$obj["tel"]."/Img";
 $arr = PregMatchFile($path, "/^userImg/");
 if (!empty($arr)) {
-    $obj["img_path"] = "http://localhost/PHP_OnlineOj/application/src/users/".$obj["tel"]."/Img/".$arr[0];
+    $obj["img_path"] = "../src/users/".$obj["tel"]."/Img/".$arr[0];
 }
 else {
     $obj['img_path'] = null;

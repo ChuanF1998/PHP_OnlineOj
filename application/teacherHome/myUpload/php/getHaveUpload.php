@@ -12,7 +12,7 @@ $table = "titles";
 $myDatabase = new connect("online_oj");
 
 //编程题
-$sqlSentence = "select id,name,types,species,upload_time
+$sqlSentence = "select id,name,types,species,difficulty,upload_time,filedir
 from $table where uploader='$teacherId' and is_use='1'";
 
 $obj = $myDatabase->MultitermSelect($sqlSentence, 0);

@@ -26,6 +26,7 @@ body {
 }
 
 .right-box {
+    margin-top: 40px;
     position: absolute;
     left: 50.5%;
     display: block;
@@ -80,6 +81,15 @@ body {
     background-size: 25px 25px;
 }
 
+.collection-icon {
+    float: right;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background: url("../../src/icon/collection.jpg")no-repeat;
+    background-size: 25px 25px;
+}
+
 .code-box {
     position: absolute;
     width: 92%;
@@ -112,6 +122,7 @@ body {
 
 .error-box{
     margin-top: 20px;
+    height:100px;
     width: 90%;
     border: 1px solid #DCDCDC;
     background-color: #F5F5F5;

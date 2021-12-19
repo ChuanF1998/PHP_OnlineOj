@@ -1,0 +1,6 @@
+class solution {
+public:
+	bool isLeapYear(int year){
+            
+	}
+};

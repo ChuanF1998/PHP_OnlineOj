@@ -1,0 +1,23 @@
+int main()
+{
+	//测试用例编写
+	vector<vector<int> > arr;
+	arr.push_back({1, 2, 6, 7 , 9});
+	arr.push_back({6, 9, 19, 32, 78, 90});
+	arr.push_back({ -4, -1, 0, 5, 8 });
+	arr.push_back({ -100, -50, 0, 9, 100 });
+	arr.push_back({ 200, 201, 208, 209, 300 });
+	vector<int> target{ 6, 20, 0, -100, 10 };
+	vector<int> result{ 2, -1, 2, 0, -1 };
+	Solution s;
+	int passCount = 0;
+	//判定测试用例
+	for (int i = 0; i < 5; ++i) {
+		if (result[i] == s.search(arr[i], target[i])) {
+			passCount++;
+		}
+	}
+	double res = (double)passCount * 100 / 5;
+	cout << setiosflags(ios::fixed) << setprecision(1) << res;
+	return 0;
+}

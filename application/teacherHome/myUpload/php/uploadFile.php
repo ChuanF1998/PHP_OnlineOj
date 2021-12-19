@@ -38,20 +38,34 @@ if ($_FILES['main']['error'] > 0) {
     exit(json_encode($res));
 }
 
-$timeStamp = time();
 $myDatabase = new connect("online_oj");
-$sqlSentence = "insert into titles(name,difficulty,types,species,uploader, filedir) 
+
+if (!isset($_POST["filedir"], $_POST['queId'])) {
+    $timeStamp = time();
+    $sqlSentence = "insert into titles(name,difficulty,types,species,uploader, filedir) 
 values('$questionName','$difficulty','$types','$species','$uploaderId','$timeStamp')";
-if (!$myDatabase->Insert($sqlSentence)) {
-    $res[] = array('status' => '850');
-    exit(json_encode($res));
+    if (!$myDatabase->Insert($sqlSentence)) {
+        $res[] = array('status' => '850');
+        exit(json_encode($res));
+    }
+    $questionPath = "../../../src/questions/programing/".$uploaderId.'/'.$timeStamp;
+    if (!CreateFolder($questionPath)) {
+        $res[] = array('status' => '865');
+        exit(json_encode($res));
+    }
+}
+else {
+    $timeStamp = $_POST['filedir'];
+    $queId = $_POST['queId'];
+    $questionPath = "../../../src/questions/programing/".$uploaderId.'/'.$timeStamp;
+    $sqlSentence = "update titles set name='$questionName',difficulty='$difficulty',species='$species'
+where id='$queId'";
+    if (!$myDatabase->Updata($sqlSentence)) {
+        $res[] = array('status' => '850');
+        exit(json_encode($res));
+    }
 }
 
-$questionPath = "../../../src/questions/programing/".$uploaderId.'/'.$timeStamp;
-if (!CreateFolder($questionPath)) {
-    $res[] = array('status' => '865');
-    exit(json_encode($res));
-}
 
 $tmpFile = $_FILES["describe"]['tmp_name'];
 if (!move_uploaded_file($tmpFile, $questionPath."/"."describe.txt")) {

@@ -35,6 +35,12 @@ function getTests(key, btn, event) {
             $(btn).attr("onclick", event);
             let resData = eval('('+data+')');
             let queCount = resData.length - 1;
+            resData.sort(function (a, b) {
+                if (a.submitId >= b.submitId) {
+                    return false;
+                }
+                return true;
+            });
             if (resData[queCount].status === "900") {
                 let s = "<tbody data-v-4bedaae3>";
                 let date;
@@ -64,10 +70,10 @@ function getTests(key, btn, event) {
                             "<td data-v-4bedaae3 class=\"t-subject-title\">"+resData[i].questionName+"</td>" +
                             "<td data-v-4bedaae3 class=\"t-subject-title\">"+date[0]+"</td>";
                         if (resData[i].is_pass === "1") {
-                            s += "<td data-v-4bedaae3 class=\"t-subject-title color-green\">通过</td>";
+                            s += "<td data-v-4bedaae3 class=\"t-subject-title color-green\">"+resData[i].state+"</td>";
                         }
                         else {
-                            s += "<td data-v-4bedaae3 class=\"t-subject-title color-red\">未通过</td>";
+                            s += "<td data-v-4bedaae3 class=\"t-subject-title color-red\">"+resData[i].state+"</td>";
                         }
                         s += "<td data-v-4bedaae3 class=\"t-subject-title\">"+resData[i].prog_language+"</td>" + "</tr>";
                     }

@@ -100,26 +100,32 @@ function submitCode(form) {
         url: submitUrl,
         data: form,
         beforeSend: function(){
-            $("#submit-button").attr('onclick', '').text("提交中");
+            $("#submit-button").attr('onclick', '').text("正在判题");
         },
-        timeout: 5000,
+        timeout: 8000,
         datatype: 'json',
         success: function (data) {
-            console.log(data);
             $("#submit-button").attr('onclick', 'submit()').text("点击提交");
             let resData = eval('('+data+')');
+            let curIndex = resData.length - 1;
             console.log(resData);
-            if (resData[resData.length - 1]['status'] === "1002") {
-                console.log("1002");
-                $("#prompt").css('color', '#ea0e07').text("编译错误"+resData[resData.length - 1]['info']);
+            if (resData[curIndex]['status'] === "1001") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']+"\r\n"+resData[curIndex]['info']);
             }
-            if (resData[resData.length - 1]['status'] === "1000") {
-                console.log("1000");
-                $("#prompt").css('color', '#25bb9b').text("已通过所有测试用例");
+            if (resData[curIndex]['status'] === "1002") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']);
             }
-            if (resData[resData.length - 1]['status'] === "1001") {
-                console.log("1001");
-                $("#prompt").css('color', '#ea0e07').text("未通过所有测试用例");
+            if (resData[curIndex]['status'] === "1003") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']);
+            }
+            if (resData[curIndex]['status'] === "1004") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']+"\r\n"+resData[curIndex]['info']);
+            }
+            if (resData[curIndex]['status'] === "1005") {
+                $("#prompt").css('color', '#25bb9b').text(resData[curIndex]['msg']);
+            }
+            if (resData[curIndex]['status'] === "1006") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']);
             }
         },
         error: function () {

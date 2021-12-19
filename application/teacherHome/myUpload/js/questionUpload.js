@@ -1,6 +1,9 @@
 let getHaveUploadUrl = "php/getHaveUpload.php";
 let uploadFileUrl = "php/uploadFile.php";
 let questionData;
+let fileDir;
+let queId;
+let isModify = 0;
 
 $(document).ready(function () {
     getTeacherId();
@@ -20,13 +23,14 @@ $(document).ready(function () {
 })
 
 function upload() {
-    //alert("请务必上传txt格式文件，否则读取失败");
+    alert("请务必上传txt格式文件，否则可能读取失败");
     $("#spanA1").hide();
     $("#spanA2").show();
     $("#spanA3").show();
     $("input[name='questionName']").val("");
     $("#question-table").css("display", "none");
     $("#question-upload").css("display", "block");
+    isModify = 0;
 }
 
 function cancel() {
@@ -37,6 +41,7 @@ function cancel() {
     $("#question-upload").css("display", "none");
     $("input[type='radio'][name='level']:checked").prop('checked', false);
     $("input[type='radio'][name='species']:checked").prop('checked', false);
+    isModify = 0;
 }
 
 function save() {
@@ -68,6 +73,11 @@ function save() {
         form.append('describe', describe);
         form.append('func', func);
         form.append('main', main);
+        if (isModify === 1) {
+            form.append('filedir', fileDir);
+            form.append('queId', queId);
+        }
+        isModify = 0;
         $.ajax({
             type: "post",
             url: uploadFileUrl,
@@ -111,7 +121,7 @@ function getHaveUploadData(form) {
                 let date;
                 for (let i = resCount - 2; i >= 0; --i) {
                     date = questionData[i].upload_time.split(" ", 1);
-                    s += "<tr data-v-4bedaae3 class=\"js-nc-wrap-link\">"
+                    s += "<tr data-v-4bedaae3 class=\"js-nc-wrap-link\" ondblclick=\"modify_que(this)\">"
                         + "<td data-v-4bedaae3 class=\"t-subject-title\">"+questionData[i].id+"</td>"
                     +"<td data-v-4bedaae3 class=\"t-subject-title\">"+questionData[i].name+"</td>"
                     +"<td data-v-4bedaae3 class=\"t-subject-title\">"+date[0]+"</td>";
@@ -127,6 +137,20 @@ function getHaveUploadData(form) {
     });
 }
 
-function uploadFile(form) {
-
+function modify_que(obj) {
+    isModify = 1;
+    $("#spanA1").hide();
+    $("#spanA2").show();
+    $("#spanA3").show();
+    $("#question-table").css("display", "none");
+    $("#question-upload").css("display", "block");
+    let i = $(obj).index();
+    let dom = questionData[questionData.length - i - 1];
+    $("input[name='questionName']").val(dom['name']);
+    $("input[name='level'][value="+dom['difficulty']+"]").prop("checked", true);
+    $("input[name='species'][value="+dom['species']+"]").prop("checked", true);
+    fileDir = dom['filedir'];
+    queId = dom['id'];
 }
+
+

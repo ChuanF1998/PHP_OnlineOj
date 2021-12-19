@@ -21,9 +21,10 @@ include("../../../common/php/com_func.php");
 
 $table = "class_que_answer";
 $myDatabase = new connect("online_oj");
-$sqlSentence = "select distinct studentId,classQuestionId,types,submitTime,isPass
-from $table
-where classId='$classId' and classQuestionId='$classQuestionId' and isPass='1'";
+$sqlSentence = "select studentId,classId,classQuestionId,types,isPass,max(submitId) as submitId from
+(select studentId,classId,classQuestionId,types,isPass,submitId
+from class_que_answer where classQuestionId='$classQuestionId' and IsPass='1') as A 
+group by studentId";
 $obj = $myDatabase->MultitermSelect($sqlSentence, 0);
 
 if ($obj === null) {

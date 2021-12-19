@@ -33,17 +33,18 @@ $A = $MyDatabase->SingleSelect($SqlSentence, 0);
 //已挑战数目(通过和未通过)
 if ($Class === 'Z') {
     $SqlSentence = "select Count(*) as submit_questions
-from (select user_id,question_id,types,species from $Table group by question_id 
-having user_id='$UserId' and types='$Type') A";
+from (select distinct user_id,question_id,types,species from $Table 
+where user_id='$UserId' and types='$Type') A";
 }
 else {
     $SqlSentence = "select Count(*) as submit_questions
-from (select user_id,question_id,types,species from $Table group by question_id 
-having user_id='$UserId' and types='$Type' and species='$Class') A";
+from (select distinct user_id,question_id,types,species from $Table 
+where user_id='$UserId' and types='$Type' and species='$Class') A";
 }
 $B = $MyDatabase->SingleSelect($SqlSentence, 0);
+$s = $SqlSentence;
 
-//通过题目书数
+//通过题目数
 if ($Class === 'Z') {
     $SqlSentence = "select Count(*) as pass_questions
 from (select distinct question_id,is_pass from $Table where user_id='$UserId' and types='$Type') A 
@@ -71,6 +72,7 @@ $res1 = $MyDatabase->MultitermSelect($SqlSentence, 0);
 $res2['submit_times'] = $A['submit_times'];
 $res2['submit_questions'] = $B['submit_questions'];
 $res2['pass_questions'] = $C['pass_questions'];
+$res2['s'] = $s;
 
 /*print_r($A);
 print_r($B);

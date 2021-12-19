@@ -1,5 +1,6 @@
 let GetQuestionUrl = "php/getQuestion.php";
 let submitUrl = "php/codeJudge.php";
+let collectionUrl = "php/collection.php";
 let userId = localStorage.getItem('userId');
 let tel = localStorage.getItem('tel');
 let question = eval('('+localStorage.getItem('question')+')');
@@ -83,25 +84,32 @@ function submitCode(form) {
         url: submitUrl,
         data: form,
         beforeSend: function(){
-            $("#submit-button").attr('onclick', '').text("提交中");
+            $("#submit-button").attr('onclick', '').text("正在判题");
         },
-        timeout: 5000,
+        timeout: 8000,
         datatype: 'json',
         success: function (data) {
             $("#submit-button").attr('onclick', 'submit()').text("点击提交");
             let resData = eval('('+data+')');
+            let curIndex = resData.length - 1;
             console.log(resData);
-            if (resData[resData.length - 1]['status'] === "1002") {
-                console.log("1002");
-                $("#prompt").css('color', '#ea0e07').text("编译错误"+resData[resData.length - 1]['info']);
+            if (resData[curIndex]['status'] === "1001") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']+"\r\n"+resData[curIndex]['info']);
             }
-            if (resData[resData.length - 1]['status'] === "1000") {
-                console.log("1000");
-                $("#prompt").css('color', '#25bb9b').text("已通过所有测试用例");
+            if (resData[curIndex]['status'] === "1002") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']);
             }
-            if (resData[resData.length - 1]['status'] === "1001") {
-                console.log("1001");
-                $("#prompt").css('color', '#ea0e07').text("未通过所有测试用例");
+            if (resData[curIndex]['status'] === "1003") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']);
+            }
+            if (resData[curIndex]['status'] === "1004") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']+"\r\n"+resData[curIndex]['info']);
+            }
+            if (resData[curIndex]['status'] === "1005") {
+                $("#prompt").css('color', '#25bb9b').text(resData[curIndex]['msg']);
+            }
+            if (resData[curIndex]['status'] === "1006") {
+                $("#prompt").css('color', '#ea0e07').text(resData[curIndex]['msg']);
             }
         },
         error: function () {
@@ -115,3 +123,32 @@ $("input[name=language]").click(function(){
     let language = $(this).val();
     console.log(language);
 });
+
+function collection() {
+    let form = {};
+    form['userId'] = userId;
+    form['questionId'] = question['id'];
+    form['questionName'] = question['name'];
+    form['types'] = question['types'];
+    return $.ajax({
+        type: "post",
+        url: collectionUrl,
+        data: form,
+        timeout: 5000,
+        datatype: 'json',
+        success: function (data) {
+            console.log(data);
+            let resData = eval('('+data+')');
+            console.log(resData);
+            if (resData[0]['status'] === "900") {
+                alert("收藏成功");
+            }
+            if (resData[0]['status'] === "881") {
+                alert("您已收藏该题目");
+            }
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}

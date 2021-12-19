@@ -140,7 +140,7 @@ function GetAnswerDetail(DetailUrl, key) {
                 let res = data.split(".");
                 //用户做题详情
                 AnswerDetails = eval('(' + res[1] + ')');
-                //console.log(AnswerDetails);
+                console.log(AnswerDetails);
             }
         },
         error: function () {
